@@ -1019,21 +1019,6 @@ client.on('message', message => {
 
 client.on('message', message => {
   var prefix = "!"////البرفكس
-    if (message.content.toLowerCase() === prefix + "help") {
-        if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
-        message.channel.send("** تم ارسال الاوامر في الخاص 📬 ** ")
-        let embed = new Discord.RichEmbed()
-        .setColor("RANDOM")
-        .setTitle("اوامر المساعدة")
-        .addField("!help-admin",' يعطك اوامر الادارة ')
-        .addField("!help-public",' يعطك الاوامر العامه ')
-	.addField("!help-games",' يعطك اوامر الالعاب ')
-        message.author.sendEmbed(embed);
-    }
-});
-
-client.on('message', message => {
-  var prefix = "!"////البرفكس
     if (message.content.toLowerCase() === prefix + "help-public") {
         if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
         message.channel.send("** تم ارسال الاوامر العامة في الخاص 📬 ** ")
