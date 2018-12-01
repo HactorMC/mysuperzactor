@@ -818,3 +818,21 @@ client.on('guildMemberAdd', member => {
     logChannel.send(`**Invited by:** <@${inviter.tag}>`);
   });
 });
+
+client.on('message', message => {
+if(message.content.startsWith("!slots")) {
+let slot1 = ['🍏', '🍇', '🍒', '🍍', '🍅', '🍆', '🍑', '🍓'];
+let slot2 = ['🍏', '🍇', '🍒', '🍍', '🍅', '🍆', '🍑', '🍓'];
+let slot3 = ['🍏', '🍇', '🍒', '🍍', '🍅', '🍆', '🍑', '🍓'];
+let slots1 = `${slot1[Math.floor(Math.random() * slot1.length)]}`;
+let slots2 = `${slot1[Math.floor(Math.random() * slot1.length)]}`;
+let slots3 = `${slot1[Math.floor(Math.random() * slot1.length)]}`;
+let we;
+if(slots1 === slots2 && slots2 === slots3) {
+we = "😀لقد ربحت يا بطل😀"
+} else {
+we = "😣لقد خسرت😣"
+}
+message.channel.send(`${slots1} | ${slots2} | ${slots3} - ${we}`)
+}
+});
