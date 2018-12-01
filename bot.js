@@ -829,3 +829,11 @@ client.on ("guildMemberAdd", member => {
 client.on ("guildMemberRemove", member => {
    
 })
+
+client.on('message', message=> {
+    if (message.author.bot) return;
+    if (message.isMentioned(client.user))
+    {
+    message.reply("يليييل شتبي يا ورع؟");
+    }
+});
