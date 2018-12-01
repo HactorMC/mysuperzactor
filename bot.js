@@ -868,7 +868,7 @@ Server owner: __${guild.owner}__
 Members Count: __${guild.memberCount}__
 Servers Counter : __${client.guilds.size}__**`)
          .setColor("#f3ae10")
-         .setFooter('Heem Bot' , client.user.avatarURL)
+         .setFooter('Zactor BOT' , client.user.avatarURL)
            client.channels.get("497345517748224011").send({embed});
 }
  
