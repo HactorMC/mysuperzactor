@@ -819,20 +819,23 @@ client.on('guildMemberAdd', member => {
   });
 });
 
-client.on('message', message => {
-if(message.content.startsWith("!slots")) {
-let slot1 = ['🍏', '🍇', '🍒', '🍍', '🍅', '🍆', '🍑', '🍓'];
-let slot2 = ['🍏', '🍇', '🍒', '🍍', '🍅', '🍆', '🍑', '🍓'];
-let slot3 = ['🍏', '🍇', '🍒', '🍍', '🍅', '🍆', '🍑', '🍓'];
-let slots1 = `${slot1[Math.floor(Math.random() * slot1.length)]}`;
-let slots2 = `${slot1[Math.floor(Math.random() * slot1.length)]}`;
-let slots3 = `${slot1[Math.floor(Math.random() * slot1.length)]}`;
-let we;
-if(slots1 === slots2 && slots2 === slots3) {
-we = "😀لقد ربحت يا بطل😀"
-} else {
-we = "😣لقد خسرت😣"
-}
-message.channel.send(`${slots1} | ${slots2} | ${slots3} - ${we}`)
-}
-});
+client.on('message',async message => {
+var owners = ['441963199462506508','353552161759821824']
+        if(message.content.startsWith("!restart")) {
+         if(!owners.includes(message.author.id)) return;
+            message.channel.send('**Restarting.**').then(msg => {
+                setTimeout(() => {
+                   msg.edit('**Restarting..**');
+                },1000);
+                setTimeout(() => {
+                   msg.edit('**Restarting...**');
+                },2000);
+            });
+            console.log(`${message.author.tag} [ ${message.author.id} ] has restarted the bot.`);
+            console.log(`Restarting..`);
+            setTimeout(() => {
+                client.destroy();
+                client.login('process.env.BOT_TOKEN');
+            },3000);
+        }
+      });
