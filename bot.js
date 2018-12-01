@@ -923,3 +923,29 @@ client.on('guildMemberAdd', msg => {
     if (!channel) return;
     channel.send({embed : embed});
     });
+
+client.on("message", message => {
+        var prefix = "!";//البرفكس
+    if(message.content.startsWith(prefix + "setleave")) {
+        let args = message.mentions.channels.first();
+            if(!args) message.channel.send("** منشن روم . :x:**");
+                if(!message.guild.member(message.author.id).hasPermission("MANAGE_CHANNELS")) return message.channel.send("**ليس لديك صلاحيات . :x:**");
+                        message.channel.send(`**${args}. لقد تم تشغيل الروم هذا للترحيب.**`);
+                    client.on("guildMemberRemove", (member) => {
+                            if(member.user.bot) return;
+                         var embed = new Discord.RichEmbed()
+    .setAuthor(member.user.username, member.user.avatarURL)
+  .setThumbnail(member.user.avatarURL)
+  .setTitle('Member Leave')
+  .setDescription('GoodBye')
+  .addField('**Member ID:',"" +  member.user.id, true)
+    .addField('**Member Tag:', member.user.discriminator, true)
+    .addField('Created At', member.user.createdAt, true)
+    .addField(' :bust_in_silhouette:  Your Number',`**[ ${member.guild.memberCount} ]**`,true)
+    .setColor('RED')
+  .setFooter(member.guild.name, member.guild.iconURL, true)
+                         
+   args.send({embed : embed});
+                    });
+    }
+});
