@@ -1031,19 +1031,3 @@ client.on('message', message => {
         message.author.sendEmbed(embed);
     }
 });
-
-client.on('message', message => {
-  var prefix = "!"////البرفكس
-    if (message.content.toLowerCase() === prefix + "help-games") {
-        if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
-        message.channel.send("** تم ارسال اوامر الالعاب في الخاص 📬 ** ")
-        let embed = new Discord.RichEmbed()
-        .setColor("RANDOM")
-        .setTitle("اوامر الالعاب")
-        .addField("!marry",' لعبة الزواج ')
-        .addField("!مريم",' لعبة مريم ')
-        .addField("!صراحه",' لعبة الصراحة ')
-        .addField("!rps",' لعبه حجره,ورقه,مقص ')
-        message.author.sendEmbed(embed);
-    }
-});
