@@ -999,13 +999,13 @@ client.on('message', message => {
 
 client.on('message', message => {
   var prefix = "!"////البرفكس
-    if (message.content.toLowerCase() === prefix + "help") {
+    if (message.content.toLowerCase() === prefix + "help-admin") {
         if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
         message.channel.send("** تم ارسال رسالة في الخاص 📬 ** ")
         let embed = new Discord.RichEmbed()
         .setColor("RANDOM")
-        .setTitle("اوامر المساعدة")
-        .addField("الامر",' ايش يسوي ')
+        .setTitle("Admin Commands")
+        .addField("!ocount",' ايش يسوي ')
         .addField("الامر",' ايش يسوي ')
         .addField("الامر",' ايش يسوي ')
         .addField("الامر",' ايش يسوي ')
