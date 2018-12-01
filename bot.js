@@ -1028,6 +1028,7 @@ client.on('message', message => {
         .addField("!date",' يقولك التاريخ ')
         .addField("رابط",' يعطك اي رابط عشوائي ')
         .addField("!email",' يعطك ايميل عشائي تقدر تسوي منه حساب وهمي ')
+	.addField("!say []",' يخلي البوت يكتب يلي تكتبه ')
         message.author.sendEmbed(embed);
     }
 });
