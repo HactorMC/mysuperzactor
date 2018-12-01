@@ -1001,18 +1001,64 @@ client.on('message', message => {
   var prefix = "!"////البرفكس
     if (message.content.toLowerCase() === prefix + "help-admin") {
         if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
-        message.channel.send("** تم ارسال رسالة في الخاص 📬 ** ")
+        message.channel.send("** تم ارسال اوامر الأداره في الخاص 📬 ** ")
         let embed = new Discord.RichEmbed()
         .setColor("RANDOM")
-        .setTitle("Admin Commands")
+        .setTitle("الاوامر الادارية")
         .addField("!ocount",' يسوي لك روم صوتي فيها عدد الناس  ')
         .addField("!ban",' تبنيد شخص مع المنشنة ')
         .addField("!mutechannel",' قفل الشات ')
         .addField("!unmutechannel",' فتح الشات ')
         .addField("!bc",' ارسال رساله للكل ')
         .addField("!clear []",' مسح الشات مع تحديد الرقم او بدون تحديد ')
-        .addField("-اسم بلد",' يقلك مواعيد الصلاة ا ')
+        .addField("-اسم بلد",' يقلك مواعيد الصلاة ')
         .addField("الامر",' ايش يسوي ')
+        message.author.sendEmbed(embed);
+    }
+});
+
+client.on('message', message => {
+  var prefix = "!"////البرفكس
+    if (message.content.toLowerCase() === prefix + "help") {
+        if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
+        message.channel.send("** تم ارسال الاوامر في الخاص 📬 ** ")
+        let embed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setTitle("اوامر المساعدة")
+        .addField("!help-admin",' يعطك اوامر الادارة ')
+        .addField("!help-public",' يعطك الاوامر العامه ')
+	.addField("!help-games",' يعطك اوامر الالعاب ')
+        message.author.sendEmbed(embed);
+    }
+});
+
+client.on('message', message => {
+  var prefix = "!"////البرفكس
+    if (message.content.toLowerCase() === prefix + "help") {
+        if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
+        message.channel.send("** تم ارسال الاوامر العامة في الخاص 📬 ** ")
+        let embed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setTitle("الاوامر العامه")
+        .addField("!date",' يقولك التاريخ ')
+        .addField("رابط",' يعطك اي رابط عشوائي ')
+        .addField("!email",' يعطك ايميل عشائي تقدر تسوي منه حساب وهمي ')
+        message.author.sendEmbed(embed);
+    }
+});
+
+client.on('message', message => {
+  var prefix = "!"////البرفكس
+    if (message.content.toLowerCase() === prefix + "help") {
+        if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
+        message.channel.send("** تم ارسال اوامر الالعاب في الخاص 📬 ** ")
+        let embed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setTitle("اوامر الالعاب")
+        .addField("!marry",' لعبة الزواج ')
+        .addField("!مريم",' لعبة مريم ')
+        .addField("!صراحه",' لعبة الصراحة ')
+        .addField("!rps",' لعبه حجره,ورقه,مقص ')
         message.author.sendEmbed(embed);
     }
 });
