@@ -1032,3 +1032,17 @@ client.on('message', message => {
         message.author.sendEmbed(embed);
     }
 });
+
+client.on('message', message => {
+
+    if (message.content === "!count") {
+
+    let embed = new Discord.RichEmbed()
+
+.addField('Count: ' , message.guild.memberCount)
+.setColor("RANDOM")
+.setDescription(`${message.guild.name}`)
+     message.channel.sendEmbed(embed);
+} 
+
+});
