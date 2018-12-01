@@ -1034,7 +1034,7 @@ client.on('message', message => {
 
 client.on('message', message => {
   var prefix = "!"////البرفكس
-    if (message.content.toLowerCase() === prefix + "help") {
+    if (message.content.toLowerCase() === prefix + "help-public") {
         if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
         message.channel.send("** تم ارسال الاوامر العامة في الخاص 📬 ** ")
         let embed = new Discord.RichEmbed()
@@ -1049,7 +1049,7 @@ client.on('message', message => {
 
 client.on('message', message => {
   var prefix = "!"////البرفكس
-    if (message.content.toLowerCase() === prefix + "help") {
+    if (message.content.toLowerCase() === prefix + "help-games") {
         if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
         message.channel.send("** تم ارسال اوامر الالعاب في الخاص 📬 ** ")
         let embed = new Discord.RichEmbed()
