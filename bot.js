@@ -910,7 +910,7 @@ client.on('guildMemberAdd', msg => {
     var embed = new Discord.RichEmbed()
     .setAuthor(msg.user.username, msg.user.avatarURL)
     .setThumbnail(msg.user.avatarURL)
-    .setImage('https://cdn.discordapp.com/attachments/492862340484694027/493771573740830740/welcome1.png')     
+    .setImage('https://images-ext-1.discordapp.net/external/Zs0byK33QJbvVbDoyMPUEYBCuyQud-FHl39yoVYd-TA/https/image.prntscr.com/image/7QHFVKUtRgWUEEJv1DsSjA.png')     
     .setTitle('عضو جديد!')
     .setDescription('مرحبا بك بالسيرفر')
     .addField('``ايدي العضو``:',"" +  msg.user.id, true)
