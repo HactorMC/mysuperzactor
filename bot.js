@@ -63,18 +63,6 @@ Password : **${random2}**
 message.channel.send("**تم الارسال الحساب في الخاص | ☑ **")
 }});
 
-client.on('ready', () => {
-   console.log(`----------------`);
-      console.log(`Desert Bot- Script By : Supreme Codes`);
-        console.log(`----------------`);
-      console.log(`ON ${client.guilds.size} Servers '     Script By : Supreme Codes' `);
-    console.log(`----------------`);
-  console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`!help - By HactorMC`,"http://twitch.tv/S-F")
-client.user.setStatus("online")
- 
-});
-
 client.on('message', message => {
    if(message.channel.type === "dm") return;
      if(message.content.startsWith ("!marry")) {
@@ -322,7 +310,7 @@ client.on('message',async msg => {
   if(msg.content.startsWith(p + "ocount")) {
   if(!msg.guild.member(msg.author).hasPermissions('MANAGE_CHANNELS')) return msg.reply('❌ **No Permissions**');
   if(!msg.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS'])) return msg.reply('❌ **البوت لا يمتلك صلاحية**');
-  msg.guild.createChannel(`يتم تحضير الروم :[]` , 'voice').then(time => {
+  msg.guild.createChannel(`loading :[]` , 'voice').then(time => {
     time.overwritePermissions(msg.guild.id, {
       CONNECT: false,
       SPEAK: false
@@ -335,105 +323,6 @@ Dat = currentTime.getDate()
       time.setName(`Members : → ${msg.guild.members.size} ←`);
  },1000);
   });
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'السعودية') {      
-    msg.react("🇸🇦")
-    msg.channel.send("🇸🇦")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'مصر') {      
-    msg.react("🇪🇬")
-    msg.channel.send("🇪🇬")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'المغرب') {      
-    msg.react("🇲🇦")
-    msg.channel.send("🇲🇦")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'العراق') {      
-    msg.react("🇮🇶")
-    msg.channel.send("🇮🇶")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'الجزائر') {      
-    msg.react("🇩🇿")
-    msg.channel.send("🇩🇿")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'فلسطين') {      
-    msg.react(":flag_ps: ")
-    msg.channel.send(":flag_ps: ")
-  }
-});
- 
- 
-client.on('message', msg => {
-  if (msg.content === 'الامارات') {      
-    msg.react("🇦🇪")
-    msg.channel.send("🇦🇪")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'تونس') {      
-    msg.react("🇹🇳")
-    msg.channel.send("🇹🇳")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'سوريا') {      
-    msg.react("🇸🇾")
-    msg.channel.send("🇸🇾")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'ليبيا') {      
-    msg.react("🇱🇾")
-    msg.channel.send("🇱🇾")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'قطر') {      
-    msg.react("🇶🇦")
-    msg.channel.send("🇶🇦")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'الصومال') {      
-    msg.react("🇸🇴")
-    msg.channel.send("🇸🇴")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'عمان') {      
-    msg.react("🇴🇲")
-    msg.channel.send("🇴🇲")
-  }
-});
- 
-client.on('message', msg => {
-  if (msg.content === 'موريتانيا') {      
-    msg.react("🇲🇷")
-    msg.channel.send("🇲🇷")
   }
 });
 
@@ -1016,3 +905,19 @@ client.on('message', message => {
         message.author.sendEmbed(embed);
     }
 });
+
+client.on("message", msg => {
+var prefix = "!"//البرفكس
+    if (msg.content.startsWtih(prefix + "id")) {    
+let embed = new Discord.RichEmbed()
+     .setColor("RANDOM")
+     .setAuthor(msg.author.username, msg.author.avatarURL)
+     .setTitle('👥**Your Information**👥')
+     .addField("📜**Name + Tag**📜", msg.author.tag, true)     
+     .setThumbnail(msg.author.avatarURL)
+     .addField('**Your ID**', msg.author.id, true)
+     .addField('📆**Account Created At**📆',`${moment(msg.author.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(msg.author.createdAt).fromNow()}\``, true)
+     .setFooter(msg.guild.name, msg.guild.iconURL, true)
+     msg.channel.sendEmbed(embed);
+    }
+  });
