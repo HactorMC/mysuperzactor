@@ -905,19 +905,3 @@ client.on('message', message => {
         message.author.sendEmbed(embed);
     }
 });
-
-client.on("message", msg => {
-var prefix = "!"//البرفكس
-    if (msg.content.startsWtih(prefix + "id")) {    
-let embed = new Discord.RichEmbed()
-     .setColor("RANDOM")
-     .setAuthor(msg.author.username, msg.author.avatarURL)
-     .setTitle('👥**Your Information**👥')
-     .addField("📜**Name + Tag**📜", msg.author.tag, true)     
-     .setThumbnail(msg.author.avatarURL)
-     .addField('**Your ID**', msg.author.id, true)
-     .addField('📆**Account Created At**📆',`${moment(msg.author.createdAt).format('D/M/YYYY h:mm a')} **\n** \`${moment(msg.author.createdAt).fromNow()}\``, true)
-     .setFooter(msg.guild.name, msg.guild.iconURL, true)
-     msg.channel.sendEmbed(embed);
-    }
-  });
