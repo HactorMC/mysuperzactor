@@ -740,7 +740,7 @@ Member Count: __${guild.memberCount}__
 Servers Counter : __${client.guilds.size}__**`)
          .setColor("#f3ae10")
          .addField("New Server!")
-         .setFooter('Heem Bot' , client.user.avatarURL)
+         .setFooter('Zactor BOT' , client.user.avatarURL)
            client.channels.get("518350655056904202").send({embed}); //Sup
 }
  
