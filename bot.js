@@ -926,7 +926,7 @@ client.on('guildMemberAdd', msg => {
 
 client.on("message", message => {
         var prefix = "!";//البرفكس
-    if(message.content.startsWith(prefix + "setleave")) {
+    if(message.content.startsWith(prefix + "setwlc")) {
         let args = message.mentions.channels.first();
             if(!args) message.channel.send("** منشن روم . :x:**");
                 if(!message.guild.member(message.author.id).hasPermission("MANAGE_CHANNELS")) return message.channel.send("**ليس لديك صلاحيات . :x:**");
