@@ -931,7 +931,7 @@ client.on("message", message => {
 });
 
 client.on('message', message => {
-if (message.content.startsWith(prefix + 'phelp')) { 
+if (message.content.startsWith(prefix + 'evasdvaw')) { 
     let pages = [`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 :earth_africa: الاوامر العامة :earth_africa: 
@@ -1076,3 +1076,15 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
     })
     }
 }); 
+
+client.on('message', message => {
+    if (message.content === "!invite") {
+        if(!message.channel.guild) return;
+    let embed = new Discord.RichEmbed()
+    .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
+    .setTitle(`Click Here To Add Me `)
+    .setURL(`https://discordapp.com/api/oauth2/authorize?client_id=518334664251801612&permissions=0&scope=bot`)  // حط اي دي بوتك
+    .setThumbnail(" https://cdn.discordapp.com/avatars/377904849783750667/6c76e412f18c142dfd711d05fb363869.png?size=2048")        
+ message.channel.sendEmbed(embed);
+   }
+});
