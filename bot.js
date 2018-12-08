@@ -934,39 +934,31 @@ client.on('message', message => {
 if (message.content.startsWith(prefix + 'phelp')) { 
     let pages = [`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
-:earth_africa: The Public Commands :earth_africa: 
+:earth_africa: الاوامر العامة :earth_africa: 
 1༺༻  !invites  | يقلك عدد الدعوات حقتك༺༻
 2༺༻  !date | يقلك التاريخ༺༻
 3༺༻  !say | يردد الكلمه يلي تكتبها༺༻
 4༺༻  !email | يعطك ايميل عشوائي༺༻
-5༺༻  رابط | يعطك رابط༺༻
-6༺༻ -اسم بلد | يقلك مواعيد الصلاة༺༻
-20༺༻  $tag  | Give You Custom Words༺༻
-21༺༻  $redo  | Redoing Whats You Saying༺༻
-22༺༻  $2mv  | Makeing Channel For 2m༺༻
-23༺༻  $em  | Makeing Your Words In Embed༺༻
-24༺༻  $credits  | Shows Your Credits༺༻
-25༺༻  $daily  | You Can Get 250 Credits Everyday༺༻
-26༺༻  $rep  | Gives to the user REP༺༻
-27༺༻  $profile  | Shows User Profile༺༻
-28༺༻  $title  | Shows User title༺༻
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
-Click On ▶ To Go Administor Side
+اضغط ▶ 	لتذهب الي قائمة اوامر الادارة
    `
 ,`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
-:closed_lock_with_key: Administor Coomands:closed_lock_with_key: 
-1༺༻  $clear | Clear The Chat༺༻
-2༺༻  $bc | Msg Everyone In The Server༺༻
-3༺༻  $kick | Kick With Reson༺༻
-4༺༻  $ban | Ban With Reason༺༻
-5༺༻ Make Room Called log For Logs༺༻
-5༺༻ Make Room Called report For reports༺༻
+:closed_lock_with_key: اوامر الادارة :closed_lock_with_key: 
+1༺༻  !clear | يحذف الشات༺༻
+2༺༻  !bc | ارسال رساله للجميع༺༻
+3༺༻  !kick | طرد شخص من السيرفر༻
+4༺༻  !ban | طرد و منع شخص من الدخول༺༻
+5༺༻ !mutechannel | قفل الشات༺༻
+5༺༻ !unmutechannel | فتح الشات༺༻
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
-Click On ▶ To Go To Bot Info
+اضغط ▶ لتذهب الي اوامر الالعاب
    `,`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
-1༺༻  There is Commands Just For NotGucci | Bot By:NotGucci༺༻
+1༺༻  !marry | لعبة الزواج
+2༺༻  !rps | لعبة حجره,ورقه,مقص༺༻
+3༺༻  لعبة الصراحه | !صراحه༺༻
+4༺༻  !لعبة مريم | !مريم!༺༻
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
    `]
     let page = 1;
