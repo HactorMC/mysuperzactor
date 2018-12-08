@@ -6,7 +6,7 @@ const prefix = '!'
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`SOON  `,"https://www.twitch.tv/dggamingbot")
+client.user.setGame(`!help  `,"https://www.twitch.tv/dggamingbot")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -1088,3 +1088,8 @@ client.on('message', message => {
  message.channel.sendEmbed(embed);
    }
 });
+
+client.on('message', message => {
+    if(message.content.startsWith("!ping")) {
+            message.channel.send(new Date().getTime() - message.createdTimestamp + " ms");        
+    }
