@@ -587,7 +587,7 @@ var prefix = "!"
   
   }).then(messages => message.channel.bulkDelete(messages));
   message.channel.sendMessage("", {embed: {
-    title: "``✏️✅ تــم مسح الشات ``",
+    title: "``✏️✅ تــم مسح الشات``",
     color: 0x06DF00,
     footer: {
     
@@ -599,9 +599,9 @@ var prefix = "!"
   
   client.on("message", (message) => {
     if (message.content.startsWith("!ban")) {
-      if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply('⚠ليست لديك صلاحية ');
+      if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply('❌ ``No Permissions`` ');
         var member= message.mentions.members.first();
-         if (message.mentions.users.size < 1) return message.reply("**المرجوا اختيار الشخص الذي تريد تبنيده **");
+         if (message.mentions.users.size < 1) return message.reply("**الرجاء اختيار الشخص الذي تريد تبنيده **");
         member.ban().then((member) => {
             message.channel.send(member.displayName + " BANNED 👋 ");
         }).catch(() => {
@@ -667,7 +667,7 @@ client.on('message', message => {
   
       )
   
-    message.channel.send("**تم ارسال الرابط برسالة خاصة**")   .then(() => {     
+    message.channel.send("**تم ارسال الرابط في الخاص**")   .then(() => {     
       coolDown.add(message.author.id);
   });
   
@@ -723,7 +723,7 @@ client.on('message', message=> {
     if (message.author.bot) return;
     if (message.isMentioned(client.user))
     {
-    message.reply("يليييل شتبي يا ورع؟");
+    message.reply("``My Prefix is : !``");
     }
 });
 
@@ -731,7 +731,7 @@ client.on('guildCreate', guild => {
    
   client.channels.get("518350655056904202")
 const embed = new Discord.RichEmbed()
-   .setAuthor(`بوتك دخل سيرفر جديد مبروك ✅`)
+   .setAuthor(`Zactor Bot Joined a Server ✅`)
    .setDescription(`**
 Server name: __${guild.name}__
 Server id: __${guild.id}__
@@ -749,7 +749,7 @@ Servers Counter : __${client.guilds.size}__**`)
 client.on('guildDelete', guild => {
   client.channels.get("518350655056904202")
 const embed = new Discord.RichEmbed()
-   .setAuthor(`Nameless Bot left a server ❎`)
+   .setAuthor(`Zactor Bot left a server ❎`)
    .setDescription(`**
 Server name: __${guild.name}__
 Server id: __${guild.id}__
@@ -775,14 +775,14 @@ client.on('message', message => {
   if (command == "kick") {
                if(!message.channel.guild) return message.reply('** This command only for servers**');
          
-  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
+  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("❌ ``No Permissions``");
   if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
-  if (message.mentions.users.size < 1) return message.reply("**https://cdn.discordapp.com/attachments/498625534549295114/498825358682882059/kick_metion.png**");
+  if (message.mentions.users.size < 1) return message.reply("**https://prnt.sc/ls9xfd**");
   if(!reason) return message.reply ("**https://cdn.discordapp.com/attachments/498625534549295114/498825956983701514/kick_reson.png**");
   if (!message.guild.member(user)
-  .kickable) return message.reply("**This User Is Have High Role**");
+  .kickable) return message.reply("**هدا المستخدم عنده رتبه قويه**");
 
   message.guild.member(user).kick();
 
