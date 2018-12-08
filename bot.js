@@ -6,7 +6,7 @@ const prefix = '!'
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`SOON  `,"idle")
+client.user.setGame(`SOON  `,"https://www.twitch.tv/dggamingbot")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -70,12 +70,12 @@ client.on('message', message => {
      var proposed = message.mentions.members.first()
  
      if(!message.mentions.members.first()) return message.reply('لازم تطلب ايد وحدة').catch(console.error);
-     if(message.mentions.users.size > 1) return message.reply('ولد ما يضبط لازم بنت تذكر لازم بنت الحلال').catch(console.error);
-      if(proposed === message.author) return message.reply(`**خنثى ؟ **`);
+     if(message.mentions.users.size > 1) return message.reply('ولد ما يضبط لازم بنت').catch(console.error);
+      if(proposed === message.author) return message.reply(`**خنتى ؟ **`);
        if(proposed === client.user) return message.reply(`** تبي تتزوجني؟ **`);
              message.channel.send(`**${proposed}
 بدك تقبلي عرض الزواج من ${message.author}
-العرض لمدة 10 ثانية
+العرض لمدة 10 ثواني
 اكتبي موافقه او لا**`)
  
 const filter = m => m.content.startsWith("موافقه");
@@ -83,7 +83,7 @@ message.channel.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
 .then(collected =>{
    message.channel.send(`**${message.author} و ${proposed} الف الف مبروك انشاء الله تستمتعون بحياتكم الزوجية ويطول اعماركم ولا تنسون شهر العسل**`);
 })
-  .catch(collected => message.channel.send(`**السكوت علامة الرضا نقول قلللوش مبروك**`))
+  .catch(collected => message.channel.send(`**السكوت علامة الرضا نقول مبرووك**`))
  
   const filte = m => m.content.startsWith("لا");
 message.channel.awaitMessages(filte, { max: 1, time: 15000, errors: ['time'] })
@@ -308,7 +308,7 @@ client.on("guildMemberAdd", member => {
 client.on('message',async msg => {
   var p = "!";
   if(msg.content.startsWith(p + "ocount")) {
-  if(!msg.guild.member(msg.author).hasPermissions('MANAGE_CHANNELS')) return msg.reply('❌ **No Permissions**');
+  if(!msg.guild.member(msg.author).hasPermissions('MANAGE_CHANNELS')) return msg.reply('❌ ``No Permissions``');
   if(!msg.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS'])) return msg.reply('❌ **البوت لا يمتلك صلاحية**');
   msg.guild.createChannel(`loading :[]` , 'voice').then(time => {
     time.overwritePermissions(msg.guild.id, {
@@ -531,7 +531,7 @@ return;
       });
       const unknown = new Discord.RichEmbed()
       .setAuthor(message.author.username, message.author.avatarURL)
-      .setTitle('✅| the messege is loading ')
+      .setTitle('Loading')
       .addBlankField(true)
       .addField('♨| i got sended to  ', message.guild.memberCount , true)
       .addField('📝| the message ', args)
@@ -574,7 +574,7 @@ var prefix = "!";
 client.on('message', message => {
 var prefix = "!"
     if (message.content.startsWith(prefix + 'clear')) {
-      if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`ليس لديك برمشن[*MANAGE_MESSAGES*] `).catch(console.error);
+      if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(`No Permission `).catch(console.error);
   message.delete()
   if(!message.channel.guild) return;
   let args = message.content.split(" ").slice(1);
