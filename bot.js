@@ -780,7 +780,7 @@ client.on('message', message => {
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
   if (message.mentions.users.size < 1) return message.reply("**https://prnt.sc/ls9xfd**");
-  if(!reason) return message.reply ("**https://cdn.discordapp.com/attachments/498625534549295114/498825956983701514/kick_reson.png**");
+  if(!reason) return message.reply ("**https://prnt.sc/ls9yzf**");
   if (!message.guild.member(user)
   .kickable) return message.reply("**هدا المستخدم عنده رتبه قويه**");
 
@@ -791,7 +791,7 @@ client.on('message', message => {
   .setColor("RANDOM")
   .setTimestamp()
   .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Kicked By:**", '**[ ' + `${message.author.tag}` + ' ]**')
   .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
   message.channel.send({
     embed : kickembed
@@ -886,32 +886,12 @@ client.on('message', message => {
 }
 });
 
-client.on('message', message => {
-  var prefix = "!"////البرفكس
-    if (message.content.toLowerCase() === prefix + "help-admin") {
-        if(!message.channel.guild) return message.channel.send("** هذا الامر للسيرفرات فقط ⛔  **");
-        message.channel.send("** تم ارسال اوامر الأداره في الخاص 📬 ** ")
-        let embed = new Discord.RichEmbed()
-        .setColor("RANDOM")
-        .setTitle("الاوامر الادارية")
-        .addField("!ocount",' يسوي لك روم صوتي فيها عدد الناس  ')
-        .addField("!ban",' تبنيد شخص مع المنشنة ')
-        .addField("!mutechannel",' قفل الشات ')
-        .addField("!unmutechannel",' فتح الشات ')
-        .addField("!bc",' ارسال رساله للكل ')
-        .addField("!clear []",' مسح الشات مع تحديد الرقم او بدون تحديد ')
-        .addField("-اسم بلد",' يقلك مواعيد الصلاة ')
-        .addField("الامر",' ايش يسوي ')
-        message.author.sendEmbed(embed);
-    }
-});
-
 client.on('guildMemberAdd', msg => { 
     var embed = new Discord.RichEmbed()
     .setAuthor(msg.user.username, msg.user.avatarURL)
     .setThumbnail(msg.user.avatarURL)
     .setImage('https://images-ext-1.discordapp.net/external/Zs0byK33QJbvVbDoyMPUEYBCuyQud-FHl39yoVYd-TA/https/image.prntscr.com/image/7QHFVKUtRgWUEEJv1DsSjA.png')     
-    .setTitle('عضو جديد!')
+    .setTitle('Member Join!')
     .setDescription('مرحبا بك بالسيرفر')
     .addField('``ايدي العضو``:',"" +  msg.user.id, true)
     .addField('``تاق العضو``', msg.user.discriminator, true)
@@ -929,8 +909,8 @@ client.on("message", message => {
     if(message.content.startsWith(prefix + "setwlc")) {
         let args = message.mentions.channels.first();
             if(!args) message.channel.send("** منشن روم . :x:**");
-                if(!message.guild.member(message.author.id).hasPermission("MANAGE_CHANNELS")) return message.channel.send("**ليس لديك صلاحيات . :x:**");
-                        message.channel.send(`**${args}. لقد تم تشغيل الروم هذا للترحيب.**`);
+                if(!message.guild.member(message.author.id).hasPermission("MANAGE_CHANNELS")) return message.channel.send("**❌ ``No Permissions``**");
+                        message.channel.send(`**${args}. لقد تم تفعيل الروم هذا للترحيب.**`);
                     client.on("guildMemberRemove", (member) => {
                             if(member.user.bot) return;
                          var embed = new Discord.RichEmbed()
@@ -949,3 +929,158 @@ client.on("message", message => {
                     });
     }
 });
+
+client.on('message', message => {
+if (message.content.startsWith(prefix + 'phelp')) { 
+    let pages = [`
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+:earth_africa: The Public Commands :earth_africa: 
+1༺༻  !invites  | يقلك عدد الدعوات حقتك༺༻
+2༺༻  !date | يقلك التاريخ༺༻
+3༺༻  !say | يردد الكلمه يلي تكتبها༺༻
+4༺༻  !email | يعطك ايميل عشوائي༺༻
+5༺༻  رابط | يعطك رابط༺༻
+6༺༻ -اسم بلد | يقلك مواعيد الصلاة༺༻
+20༺༻  $tag  | Give You Custom Words༺༻
+21༺༻  $redo  | Redoing Whats You Saying༺༻
+22༺༻  $2mv  | Makeing Channel For 2m༺༻
+23༺༻  $em  | Makeing Your Words In Embed༺༻
+24༺༻  $credits  | Shows Your Credits༺༻
+25༺༻  $daily  | You Can Get 250 Credits Everyday༺༻
+26༺༻  $rep  | Gives to the user REP༺༻
+27༺༻  $profile  | Shows User Profile༺༻
+28༺༻  $title  | Shows User title༺༻
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+Click On ▶ To Go Administor Side
+   `
+,`
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+:closed_lock_with_key: Administor Coomands:closed_lock_with_key: 
+1༺༻  $clear | Clear The Chat༺༻
+2༺༻  $bc | Msg Everyone In The Server༺༻
+3༺༻  $kick | Kick With Reson༺༻
+4༺༻  $ban | Ban With Reason༺༻
+5༺༻ Make Room Called log For Logs༺༻
+5༺༻ Make Room Called report For reports༺༻
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+Click On ▶ To Go To Bot Info
+   `,`
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+1༺༻  There is Commands Just For NotGucci | Bot By:NotGucci༺༻
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+   `]
+    let page = 1;
+
+    let embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setFooter(`Page ${page} of ${pages.length}`)
+    .setDescription(pages[page-1])
+
+    message.author.sendEmbed(embed).then(msg => {
+
+        msg.react('◀').then( r => {
+            msg.react('▶')
+
+
+        const backwardsFilter = (reaction, user) => reaction.emoji.name === '◀' && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
+
+
+        const backwards = msg.createReactionCollector(backwardsFilter, { time: 2000000});
+        const forwards = msg.createReactionCollector(forwardsFilter, { time: 2000000});
+
+
+
+        backwards.on('collect', r => {
+            if (page === 1) return;
+            page--;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        forwards.on('collect', r => {
+            if (page === pages.length) return;
+            page++;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        })
+    })
+    }
+}); 
+
+
+client.on('message', message => {
+if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel One Send The Help In Channel // Code By NotGucci
+    let pages = [`
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+:earth_africa: الاوامر العامة :earth_africa: 
+1༺༻  !invites  | يقلك عدد الدعوات حقتك༺༻
+2༺༻  !date | يقلك التاريخ༺༻
+3༺༻  !say | يردد الكلمه يلي تكتبها༺༻
+4༺༻  !email | يعطك ايميل عشوائي༺༻
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
+,`
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+:closed_lock_with_key: اوامر الادارة :closed_lock_with_key: 
+1༺༻  !clear | يحذف الشات༺༻
+2༺༻  !bc | ارسال رساله للجميع༺༻
+3༺༻  !kick | طرد شخص من السيرفر༻
+4༺༻  !ban | طرد و منع شخص من الدخول༺༻
+5༺༻ !mutechannel | قفل الشات༺༻
+5༺༻ !unmutechannel | فتح الشات༺༻
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+اضغط ▶ لتذهب الي اوامر الالعاب
+   `,`
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+1༺༻  !marry | لعبة الزواج
+2༺༻  !rps | لعبة حجره,ورقه,مقص༺༻
+3༺༻  لعبة الصراحه | !صراحه༺༻
+4༺༻  !لعبة مريم | !مريم!༺༻
+༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
+   `]
+ let page = 1;
+
+    let embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setFooter(`Page ${page} of ${pages.length}`)
+    .setDescription(pages[page-1])
+
+    message.channel.sendEmbed(embed).then(msg => {
+
+        msg.react('◀').then( r => {
+            msg.react('▶')
+
+           setTimeout(() => {
+        msg.delete
+    }, 60 * 1000)
+
+        const backwardsFilter = (reaction, user) => reaction.emoji.name === '◀' && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
+
+
+        const backwards = msg.createReactionCollector(backwardsFilter, { time: 2000000});
+        const forwards = msg.createReactionCollector(forwardsFilter, { time: 2000000});
+
+
+
+        backwards.on('collect', r => {
+            if (page === 1) return;
+            page--;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        forwards.on('collect', r => {
+            if (page === pages.length) return;
+            page++;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        })
+    })
+    }
+}); 
