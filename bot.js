@@ -229,7 +229,7 @@ const Sra7a = [
          .setTitle("Zactor")
          .setColor('RANDOM')
          .setDescription(`${Sra7a[Math.floor(Math.random() * Sra7a.length)]}`)
-         .setImage("https://cdn.discordapp.com/attachments/371269161470525444/384103927060234242/125.png")
+         .setImage("https://www.google.com.eg/imgres?imgurl=https%3A%2F%2Fstatic1.squarespace.com%2Fstatic%2F53a1cb39e4b030ded763dd31%2Ft%2F59baa4eee5dd5ba4b0f06b04%2F1505404178846%2FSarahah.png&imgrefurl=https%3A%2F%2Fwww.affinitytechpartners.com%2F3n1blog%2F2017%2F9%2F14%2Fapp-alert-what-parents-need-to-know-about-anonymous-social-app-sarahah&docid=YpJX1HfyJMZncM&tbnid=wkj9ppiVRWvjEM%3A&vet=10ahUKEwjdiseg4OzfAhXKfFAKHbYXCVcQMwhhKBcwFw..i&w=750&h=352&bih=603&biw=1229&q=sarahah&ved=0ahUKEwjdiseg4OzfAhXKfFAKHbYXCVcQMwhhKBcwFw&iact=mrc&uact=8")
                          .setTimestamp()
        
           message.channel.sendEmbed(client);
