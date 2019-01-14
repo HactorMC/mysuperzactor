@@ -774,6 +774,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 2  !date | يقلك التاريخ
 3  !email | يعطك ايميل عشوائي
 4  !inv | لتضيف البوت لأي سيرفر
+5  !support | سيرفر السبورت
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -793,6 +794,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 2  !rps | لعبة حجره,ورقه,مقص
 3  !sar | لعبة الصراحه
 4  !mr | لعبة مريم
+5  !mcskin | يظهر سكنك بماينكرافت
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
    `]
  let page = 1;
@@ -884,3 +886,20 @@ client.on("message", message => {
     message.channel.send(image)
         }
     });
+
+client.on('message' , message => {//mrx
+    if (message.content.startsWith(prefix + "support")) {
+        if(!message.channel.guild) return message.reply('This Command is Only For Servers');
+     let mrxsupport = new Discord.RichEmbed()
+ .setColor("RANDOM")
+ .setThumbnail(client.user.avatarURL)
+ .setAuthor(message.author.username, message.author.avatarURL)
+ .setTitle(`Support Server`)
+ .setURL('https://discord.gg/S72bm3W')
+  message.author.sendEmbed(mrxsupport).then(c => {
+    c.react('🔼')
+  })
+    }
+});//mrx
+ 
+
