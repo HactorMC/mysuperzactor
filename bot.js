@@ -906,7 +906,7 @@ client.on('message' , message => {//mrx
 client.on("message", (message) => {
    if (message.content.startsWith("!new")) {     
         const reason = message.content.split(" ").slice(1).join(" ");     
-        if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
+        if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`هدا السيرفر مب موجود فيه رتبة \`Support Team\` );
         if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);    
         message.guild.createChannel(`ticket-${message.author.username}`, "text").then(c => {
             let role = message.guild.roles.find("name", "Support Team");
@@ -940,7 +940,7 @@ client.on("message", (message) => {
  
         message.channel.send(`هل أنت متأكد؟ بعد التأكيد ، لا يمكنك عكس هذا الإجراء!\n للتأكيد ، اكتب\`!confirm\`. سيؤدي ذلك إلى مهلة زمنية في غضون 10 ثوانٍ وإلغائها`)
             .then((m) => {
-                message.channel.awaitMessages(response => response.content === '*confirm', {
+                message.channel.awaitMessages(response => response.content === '!confirm', {
                         max: 1,
                         time: 10000,
                         errors: ['time'],
@@ -949,7 +949,7 @@ client.on("message", (message) => {
                         message.channel.delete();
                     })    
                     .catch(() => {
-                        m.edit('Ticket close timed out, the ticket was not closed.').then(m2 => {
+                        m.edit('انتهي الوقت يرجي المحاوله مجددا').then(m2 => {
                             m2.delete();
                         }, 3000);
                     });
