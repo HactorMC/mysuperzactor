@@ -1062,7 +1062,7 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return m
 });
 
 client.on('message',  (message) => {
-        if(message.content.startsWith('-slap')) {
+        if(message.content.startsWith('!slap')) {
   let user = message.mentions.users.first();
   if (!user) {
 
