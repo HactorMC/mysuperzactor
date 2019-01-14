@@ -415,20 +415,6 @@ var prefix = "!"
   
   });
   
-  client.on("message", (message) => {
-    if (message.content.startsWith("!ban")) {
-      if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply('❌ ``No Permissions`` ');
-        var member= message.mentions.members.first();
-         if (message.mentions.users.size < 1) return message.reply("**الرجاء اختيار الشخص الذي تريد تبنيده **");
-        member.ban().then((member) => {
-            message.channel.send(member.displayName + " BANNED 👋 ");
-        }).catch(() => {
-            message.channel.send("⁉ Error 404 -_-");
-            //يجب وضع رول البوت الفوق
-        });
-    }
-});
-
 client.on('typingStart', (ch, user) => {
       if(user.presence.status === 'offline') {
 
@@ -1208,7 +1194,7 @@ console.log('[38ab] Send By: ' + message.author.username)
 });
 
 client.on('message', message => {
-    var prefix = "."
+    var prefix = "!"
   if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
 
@@ -1225,9 +1211,9 @@ client.on('message', message => {
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
   if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
-  if(!reason) return message.reply ("**اكتب سبب الطرد**");
+  if(!reason) return message.reply ("**يجب ان تكتب سبب الطرد**");
   if (!message.guild.member(user)
-  .bannable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+  .bannable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجي اعطاء البوت رتبه اعلي**");
 
   message.guild.member(user).ban(7, user);
 
@@ -1243,3 +1229,42 @@ client.on('message', message => {
   })
 }
 });
+
+client.on('message' , message => {
+    var prefix = "!";
+    let user = message.mentions.users.first()|| client.users.get(message.content.split(' ')[1])
+		if (message.content === '.unban') {
+        if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('❌|**\`ADMINISTRATOR\`لا توجد لديك رتبة`**');
+        if(!user) return  message.channel.send(`Do this ${prefix}unban <@user ID> \n or \n ${prefix}unban user ID`);
+        message.guild.unban(user);
+        message.guild.owner.send(`لقد تم فك الحظر عن الشخص \n ${user} \n By : <@${message.author.id}>`)
+        var embed = new Discord.RichEmbed()
+        .setThumbnail(message.author.avatarURl)
+        .setColor("RANDOM")
+        .setTitle('**Unban** !')
+        .addField('**User :** ', `${user}` , true)
+        .addField('**Unbanned By :**' ,       ` <@${message.author.id}> ` , true)
+        .setAuthor(message.guild.name)
+        message.channel.sendEmbed(embed)
+    }
+});
+
+client.on('message', function(msg) {
+         var prefix = "!"
+		if (msg.content === '!server') {
+      let embed = new Discord.RichEmbed()
+      .setColor('RANDOM')
+      .setThumbnail(msg.guild.iconURL)
+      .setTitle(`Showing Details Of  **${msg.guild.name}**`)
+      .addField(':globe_with_meridians:** نوع السيرفر**',`[** __${msg.guild.region}__ **]`,true)
+      .addField(':medal:** __الرتب__**',`[** __${msg.guild.roles.size}__ **]`,true)
+      .addField(':red_circle:**__ عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
+      .addField(':large_blue_circle:**__ عدد الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
+      .addField(':pencil:**__ الرومات الكتابية__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
+      .addField(':microphone:**__ رومات الصوت__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
+      .addField(':crown:**__ الأونـر شيب__**',`**${msg.guild.owner}**`,true)
+      .addField(':id:**__ ايدي السيرفر__**',`**${msg.guild.id}**`,true)
+      .addField(':date:**__ تم عمل السيرفر في__**',msg.guild.createdAt.toLocaleString())
+      msg.channel.send({embed:embed});
+	    }
+  });
