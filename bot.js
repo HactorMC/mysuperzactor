@@ -6,7 +6,7 @@ const prefix = '!'
  
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`!help - !inv  `,"https://www.twitch.tv/dggamingbot")
+client.user.setGame(`!help | !inv  `,"https://www.twitch.tv/dggamingbot")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -638,7 +638,7 @@ client.on('guildMemberAdd', msg => {
     var embed = new Discord.RichEmbed()
     .setAuthor(msg.user.username, msg.user.avatarURL)
     .setThumbnail(msg.user.avatarURL)
-    .setImage('https://images-ext-1.discordapp.net/external/Zs0byK33QJbvVbDoyMPUEYBCuyQud-FHl39yoVYd-TA/https/image.prntscr.com/image/7QHFVKUtRgWUEEJv1DsSjA.png')     
+    .setImage('https://cdn.discordapp.com/attachments/496581723048378388/534334241236975616/4932c9c75499ee75.png')     
     .setTitle('Member Join!')
     .setDescription('مرحبا بك بالسيرفر')
     .addField('``ايدي العضو``',"" +  msg.user.id, true)
