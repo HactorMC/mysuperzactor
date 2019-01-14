@@ -872,19 +872,15 @@ var day = message.guild.createdAt.getDate()
  
 });
 
-client.on('message', dark => {
-    
-    if (dark.content === "zactor") {
-        setInterval(function(){
-        dark.edit('**Z**')    
-        dark.edit('**Za**')    
-        dark.edit('**Zac**')
-        dark.edit('**Zact**')
-        dark.edit('**Zacto**')
-        dark.edit('**Zactor B**')
-        dark.edit('**Zactor Bo*')
-        dark.edit('**Zactor Bot**')
-        }, 900)
-    }
-    
-})
+client.on("message", message => {
+    var prefix = "!"
+    if (!message.content.startsWith(prefix)) return;
+      let command = message.content.split(" ")[0];
+      command = command.slice(prefix.length);
+        if(command === "mcskin") {
+                const args = message.content.split(" ").slice(1).join(" ")
+        if (!args) return message.channel.send("**اكتب اسم السكن الي تبيه**");
+        const image = new Discord.Attachment(`https://minotar.net/armor/body/${args}`, "skin.png");
+    message.channel.send(image)
+        }
+    });
