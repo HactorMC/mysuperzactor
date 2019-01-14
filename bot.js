@@ -776,6 +776,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 4  !inv | لتضيف البوت لأي سيرفر
 5  !support | سيرفر السبورت
 6  !new | انشاء تكذرة
+7  !avatar | يظهرلك صورتك او صورة غيرك
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -785,8 +786,10 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 2  !bc | ارسال رساله للجميع
 3  !kick | طرد شخص من السيرفر
 4  !ban | طرد و منع شخص من الدخول
-5 !mutechannel | قفل الشات
-6 !unmutechannel | فتح الشات
+5  !mutechannel | قفل الشات
+6  !unmutechannel | فتح الشات
+7  !mute | عمل ميوت لأحد
+8  !unmute | فك الميوت عن احد
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ لتذهب الي اوامر الالعاب
    `,`
@@ -796,6 +799,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 3  !sar | لعبة الصراحه
 4  !mr | لعبة مريم
 5  !mcskin | يظهر سكنك بماينكرافت 
+6  !hack [mention] | لعبة تهكير الاشخاص
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
    `]
  let page = 1;
@@ -1108,7 +1112,7 @@ client.on('message', message => {
              let args = message.content.split(' ').slice(1);
                    let virusname = args.join(' ');
                  if (virusname < 1) {
-                     return message.channel.send("``اكتب اسم الشخص الي تبي يتهكر``");
+                     return message.channel.send("``منشن الشخص الي تبيه يتهكر``");
                                      }
                  message.channel.send({embed: new Discord.RichEmbed().setTitle('Loading ' + virusname + "...").setColor(0xFF0000)}).then(function(m) {
              setTimeout(function() {
@@ -1127,7 +1131,7 @@ client.on('message', message => {
                m.delete()
            }, 5000)
              setTimeout(function() {
-               message.channel.send('تم تهكيرك')
+               message.channel.send('**تم تهكيره بنجاح**')
            }, 6000)
            });
          }
