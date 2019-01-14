@@ -872,7 +872,7 @@ var day = message.guild.createdAt.getDate()
  
 });
 
-var prefix = "!" // البريفكس
+var prefix = "!"
 if(message.content.startsWith(prefix +"server")){ // الامر
   if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.reply(`**هذه الخاصية للادارة فقط** :negative_squared_cross_mark: `)
 if(!message.channel.guild) return message.reply(' ');
