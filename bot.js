@@ -432,7 +432,7 @@ var prefix = "!"
 client.on('typingStart', (ch, user) => {
       if(user.presence.status === 'offline') {
 
-          ch.send(`${user}☹ هاهاهاا , كشفتك وانت تكتب ي اوف لاين✉`)
+          ch.send(`${user} هدا المستخدم اوفلاين`)
           .then(msg => {
               msg.delete(10000)
           })
@@ -615,53 +615,6 @@ client.on('message', message => {
     embed : kickembed
   })
 }
-});
-
-client.on('message', message => {
-          
-
-  if (message.content.startsWith(prefix + "user")) {
-   
-   if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
-
-       message.guild.fetchInvites().then(invs => {
-let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-var moment = require('moment');
-var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
-var heg;
-if(men) {
-heg = men
-} else {
-heg = message.author
-}
-var mentionned = message.mentions.members.first();
-var h;
-if(mentionned) {
-h = mentionned
-} else {
-h = message.member
-}
-moment.locale('ar-TN');
-var id = new  Discord.RichEmbed()
-
-.setColor("#0a0909")
-.setThumbnail(message.author.avatarURL)
-.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true) 
-.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
-.addField(` :لقد قمت بدعوة `, ` ${inviteCount} `)
-
-
-.setFooter(message.author.username, message.author.avatarURL)  
-message.channel.sendEmbed(id);
-})
-}
-
-
-
 });
 
 client.on('message', message => {
@@ -905,44 +858,6 @@ client.on('message', message => {
     .setThumbnail(" https://cdn.discordapp.com/avatars/377904849783750667/6c76e412f18c142dfd711d05fb363869.png?size=2048")        
  message.channel.sendEmbed(embed);
    }
-});
-
-client.on('message', async msg =>{
-	if (msg.author.bot) return undefined;
-    if (!msg.content.startsWith(prefix)) return undefined;
-    
-    let args = msg.content.split(' ');
-
-	let command = msg.content.toLowerCase().split(" ")[0];
-	command = command.slice(prefix.length)
-
-    if(command === `ping`) {
-    let embed = new Discord.RichEmbed()
-    .setColor(3447003)
-    
-    client.on('ready',async () => {
- 
-joinVoiceChannel( client.channels.get("534280347114930195"), client.guilds.get("503861977987153921") );
- 
-function joinVoiceChannel(channel, guild) {
-if(channel.type !== 'voice') return console.log(" # Error. - \"The channel type isn't a voice one\"");
-channel.join().then(() => {
-setInterval(() => {
-if(client.user.voiceChannel.id !== guild.channels.get(channel)) {
-channel.join();
-}
-}, 100);
-}).catch(e => {
-if(e) console.log(e);
-});
-}
-});
-    .setTitle("Pong!!")
-    .setDescription(`${client.ping} ms,`)
-    .setFooter(`Requested by | ${msg.author.tag}`);
-    msg.delete().catch(O_o=>{})
-    msg.channel.send(embed);
-    }
 });
 
 var guilds = {};
