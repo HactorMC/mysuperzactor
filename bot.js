@@ -775,6 +775,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 3  !email | يعطك ايميل عشوائي
 4  !inv | لتضيف البوت لأي سيرفر
 5  !support | سيرفر السبورت
+6  !new | انشاء تكذرة
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -906,7 +907,7 @@ client.on('message' , message => {//mrx
 client.on("message", (message) => {
    if (message.content.startsWith("!new")) {     
         const reason = message.content.split(" ").slice(1).join(" ");     
-        if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`Please add a role named with \`Support Team\` );
+        if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
         if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);    
         message.guild.createChannel(`ticket-${message.author.username}`, "text").then(c => {
             let role = message.guild.roles.find("name", "Support Team");
@@ -949,7 +950,7 @@ client.on("message", (message) => {
                         message.channel.delete();
                     })    
                     .catch(() => {
-                        m.edit('انتهي الوقت يرجي المحاوله مجددا').then(m2 => {
+                        m.edit('Ticket close timed out, the ticket was not closed.').then(m2 => {
                             m2.delete();
                         }, 3000);
                     });
