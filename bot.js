@@ -906,7 +906,7 @@ client.on('message' , message => {//mrx
 client.on("message", (message) => {
    if (message.content.startsWith("!new")) {     
         const reason = message.content.split(" ").slice(1).join(" ");     
-        if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`هدا السيرفر مب موجود فيه رتبة \`Support Team\` );
+        if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`Please add a role named with \`Support Team\` );
         if (message.guild.channels.exists("name", "ticket-{message.author.id}" + message.author.id)) return message.channel.send(`You already have a ticket open.`);    
         message.guild.createChannel(`ticket-${message.author.username}`, "text").then(c => {
             let role = message.guild.roles.find("name", "Support Team");
