@@ -98,7 +98,7 @@ message.channel.awaitMessages(filte, { max: 1, time: 15000, errors: ['time'] })
 });
 
 client.on('ready', () => {
- console.log(`im redey`);
+ console.log(`im ready`);
 });
 const zead = [
   '*** انا اسمي مريم ***',
@@ -149,7 +149,7 @@ const zead = [
   '*** انتظر الجزء الثاني عندما يوصل البوت 100 سيرفر , ساعدنا في نشر البوت وادخل هذا السيرفر  ***'
 ]
 client.on('message', message => {
-if (message.content.startsWith('!مريم')) {
+if (message.content.startsWith('!mr')) {
  var mariam= new Discord.RichEmbed()
  .setTitle("لعبة مريم ..")
  .setColor('RANDOM')
@@ -223,7 +223,7 @@ const Sra7a = [
        ]
           client.on('message', message => {
 			  	var prefix = "!"
-        if (message.content.startsWith(prefix + 'صراحه')) {
+        if (message.content.startsWith(prefix + 'sar')) {
             if(!message.channel.guild) return message.reply('** This command only for servers **');
          var client= new Discord.RichEmbed()
          .setTitle("Zactor")
@@ -247,54 +247,6 @@ client.on("guildMemberAdd", async member => {
   if(date < 7) {
     member.ban("Member account age is lower than 7 days.")
   }
-});
-
-client.on('message', message => {
-
-  if (message.author.bot) return;
-
-  if (!message.content.startsWith(prefix)) return;
-
-
-  let command = message.content.split(" ")[0];
-
-  command = command.slice(prefix.length);
-
-
-  let args = message.content.split(" ").slice(1);
-
-
-// -say
-
-  if (command === "say") {
-
-          message.delete()
-
-    message.channel.sendMessage(args.join(" ")).catch(console.error);
-
-  }
-
-  
-
- 
-
-
-if (command == "embed") {
-
-    let say = new Discord.RichEmbed()
-
-    .setDescription(args.join(" "))
-
-    .setColor(0x23b2d6)
-
-    message.channel.sendEmbed(say);
-
-    message.delete();
-
-  }
-
-
-
 });
 
 client.on("guildMemberAdd", member => {
@@ -1007,30 +959,30 @@ client.on('message', message => {
 if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel One Send The Help In Channel // Code By NotGucci
     let pages = [`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
-:earth_africa: الاوامر العامة :earth_africa: 
-1༺༻  !invites  | يقلك عدد الدعوات حقتك༺༻
-2༺༻  !date | يقلك التاريخ༺༻
-3༺༻  !say | يردد الكلمه يلي تكتبها༺༻
-4༺༻  !email | يعطك ايميل عشوائي༺༻
+:notepad_spiral: الاوامر العامة :notepad_spiral: 
+1  !invites  | يقلك عدد الدعوات حقتك
+2  !date | يقلك التاريخ
+3  !email | يعطك ايميل عشوائي
+4  !inv | لتضيف البوت لأي سيرفر
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 :closed_lock_with_key: اوامر الادارة :closed_lock_with_key: 
-1༺༻  !clear | يحذف الشات༺༻
-2༺༻  !bc | ارسال رساله للجميع༺༻
-3༺༻  !kick | طرد شخص من السيرفر༻
-4༺༻  !ban | طرد و منع شخص من الدخول༺༻
-5༺༻ !mutechannel | قفل الشات༺༻
-5༺༻ !unmutechannel | فتح الشات༺༻
+1  !clear | يحذف الشات
+2  !bc | ارسال رساله للجميع
+3  !kick | طرد شخص من السيرفر
+4  !ban | طرد و منع شخص من الدخول
+5 !mutechannel | قفل الشات
+6 !unmutechannel | فتح الشات
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ لتذهب الي اوامر الالعاب
    `,`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
-1༺༻  !marry | لعبة الزواج
-2༺༻  !rps | لعبة حجره,ورقه,مقص༺༻
-3༺༻  لعبة الصراحه | !صراحه༺༻
-4༺༻  !لعبة مريم | !مريم!༺༻
+1  !marry | لعبة الزواج
+2  !rps | لعبة حجره,ورقه,مقص
+3  !sar | لعبة الصراحه
+4  !mr | لعبة مريم
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
    `]
  let page = 1;
@@ -1078,7 +1030,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 }); 
 
 client.on('message', message => {
-    if (message.content === "!invite") {
+    if (message.content === "!inv") {
         if(!message.channel.guild) return;
     let embed = new Discord.RichEmbed()
     .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
