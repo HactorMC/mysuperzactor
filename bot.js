@@ -763,6 +763,8 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 5  !support | سيرفر السبورت
 6  !new | انشاء تكذرة
 7  !avatar | يظهرلك صورتك او صورة غيرك
+8  !server | يظهر لك معلومات السيرفر
+9  !id | يظهر لك معلوماتك
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -771,11 +773,12 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 1  !clear | يحذف الشات
 2  !bc | ارسال رساله للجميع
 3  !kick | طرد شخص من السيرفر
-4  !ban | طرد و منع شخص من الدخول
-5  !mutechannel | قفل الشات
-6  !unmutechannel | فتح الشات
-7  !mute | عمل ميوت لأحد
-8  !unmute | فك الميوت عن احد
+4  !ban | حظر شخص من السيرفر
+5  !unban | فك الحظر عن شخص
+6  !mutechannel | قفل الشات
+7  !unmutechannel | فتح الشات
+8  !mute | عمل ميوت لأحد
+9  !unmute | فك الميوت عن احد
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ لتذهب الي اوامر الالعاب
    `,`
@@ -1268,3 +1271,23 @@ client.on('message', function(msg) {
       msg.channel.send({embed:embed});
 	    }
   });
+
+ client.on("message", msg => {
+           var prefix = "!";
+		if (msg.content === '!id') {
+    if(!msg.channel.guild) return msg.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');
+      const embed = new Discord.RichEmbed();
+  embed.addField(":cloud_tornado:  الاسم", `**[ ${msg.author.username}#${msg.author.discriminator} ]**`, true)
+          .addField(":id:  الايدي", `**[ ${msg.author.id} ]**`, true)
+          .setColor("RANDOM")
+          .setFooter(msg.author.username , msg.author.avatarURL)
+          .setThumbnail(`${msg.author.avatarURL}`)
+          .setTimestamp()
+          .setURL(`${msg.author.avatarURL}`)
+          .addField(':spy:  الحالة', `**[ ${msg.author.presence.status.toUpperCase()} ]**`, true)
+          .addField(':satellite_orbital:   يلعب', `**[ ${msg.author.presence.game === null ? "No Game" : msg.author.presence.game.name} ]**`, true)
+          .addField(':military_medal:  الرتب', `**[ ${msg.member.roles.filter(r => r.name).size} ]**`, true)
+          .addField(':robot:  هل هو بوت', `**[ ${msg.author.bot.toString().toUpperCase()} ]**`, true);
+      msg.channel.send({embed: embed})
+	    }
+});
