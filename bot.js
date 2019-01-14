@@ -765,7 +765,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 7  !avatar | يظهرلك صورتك او صورة غيرك
 8  !server | يظهر لك معلومات السيرفر
 9  !id | يظهر لك معلوماتك
-10  !members | يظهر لك معلومات اللاعبين
+10 !members | يظهر لك معلومات اللاعبين
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -780,6 +780,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 7  !unmutechannel | فتح الشات
 8  !mute | عمل ميوت لأحد
 9  !unmute | فك الميوت عن احد
+10 log | لتفعيل اللوق اصنع روم بأسم log
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ لتذهب الي اوامر الالعاب
    `,`
