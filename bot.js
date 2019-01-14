@@ -501,7 +501,7 @@ var prefix = "!";
             Day = currentTime.getDate();
 
             var Date15= new Discord.RichEmbed()
-            .setTitle("**!~[ التاريخ ]~! **")
+            .setTitle("**![ التاريخ ]! **")
             .setColor('RANDOM')
             .setTimestamp()
             .setDescription( ""+ Day + "-" + Month + "-" + Year + "")
@@ -523,7 +523,7 @@ return;
           var bc = new Discord.RichEmbed()
           .setAuthor(message.author.username, message.author.avatarURL)
           .addField(' Server', `${message.guild.name}`, true)
-          .addField(' Sender ', `${message.author.username}!${message.author.discriminator}`, true)
+          .addField(' Sender ', `${message.author.username}#${message.author.discriminator}`, true)
           .addField(' Message ', args)
           .setThumbnail(message.guild.iconURL)
           .setColor('RANDOM')
