@@ -766,6 +766,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 8  !server | يظهر لك معلومات السيرفر
 9  !id | يظهر لك معلوماتك
 10 !members | يظهر لك معلومات اللاعبين
+11 !discrim | كود إظهار التاقات المشابهه
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -1288,7 +1289,6 @@ client.on('message', function(msg) {
           .setURL(`${msg.author.avatarURL}`)
           .addField(':spy:  الحالة', `**[ ${msg.author.presence.status.toUpperCase()} ]**`, true)
           .addField(':satellite_orbital:   يلعب', `**[ ${msg.author.presence.game === null ? "No Game" : msg.author.presence.game.name} ]**`, true)
-          .addField(':military_medal:  الرتب', `**[ ${msg.member.roles.filter(r => r.name).size} ]**`, true)
           .addField(':robot:  هل هو بوت', `**[ ${msg.author.bot.toString().toUpperCase()} ]**`, true);
       msg.channel.send({embed: embed})
 	    }
@@ -1298,11 +1298,11 @@ client.on('message', function(msg) {
     if(message.content == '!members') {
     const embed = new Discord.RichEmbed()
     .setDescription(`**Members info🔋
-:green_heart: online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
-:heart:dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
-:yellow_heart: idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}
-:black_heart: offline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}
-:blue_heart:   all:  ${message.guild.memberCount}**`)
+:green_heart: Online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
+:heart:Dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
+:yellow_heart: Idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}
+:black_heart: Offline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}
+:blue_heart:   All:  ${message.guild.memberCount}**`)
          message.channel.send({embed});
 
     }
@@ -1872,4 +1872,35 @@ if(message.content.startsWith(prefix + "bcall")) {
     s.send(args).catch(e => i--);
   });
 }
+});
+
+client.on('message',async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === 'dm') return;
+  let args = message.content.split(' ');
+  let tag;
+  if(args[0] === `{prefix}discrim`) {
+    if(args[1]) {
+      let discrim = Array.from(args[1]);
+      if(isNaN(args[1])) return message.channel.send(`- `${message.author.username}`, يجب ان تتكون هذه الخانة من ارقام وليس احرف`);
+      if(discrim.length !== 4) return message.channel.send(`- `${message.author.username}`, يجب ان يكون التاق مكون من 4 ارقام`);
+
+      tag = discrim.map(r => r.toString()).join('');
+      console.log(tag);
+      if(client.users.filter(f => f.discriminator === tag).size === 0) return message.channel.send(`- `${message.author.username}`, لا يوجد احد بهذا التاق`);
+      let iLD = new Discord.RichEmbed()
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .setDescription(client.users.filter(f => f.discriminator === tag).map(r => r.username).slice(0, 10).join('
+'))
+      message.channel.send(iLD);
+    } else if(!args[1]) {
+      tag = message.author.discriminator;
+      if(client.users.filter(f => f.discriminator === tag).size === 0) return message.channel.send(`- `${message.author.username}`, لا يوجد احد بهذا التاق`);
+      let L4U = new Discord.RichEmbed()
+      .setAuthor(message.author.username, message.author.avatarURL)
+      .setDescription(client.users.filter(f => f.discriminator === tag).map(r => r.username).slice(0, 10).join('
+'))
+      message.channel.send(L4U);
+    }
+  }
 });
