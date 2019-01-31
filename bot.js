@@ -392,7 +392,7 @@ msg.delete();
 
 client.on('message', message => {
 var prefix = "!";
-       if(message.content === prefix + "mutechannel") {
+       if(message.content === prefix + "mc") {
                            if(!message.channel.guild) return message.reply('** This command only for servers**');
 
    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **__ليس لديك صلاحيات__**');
@@ -404,7 +404,7 @@ var prefix = "!";
               });
                 }
 //FIRE BOT
-    if(message.content === prefix + "unmutechannel") {
+    if(message.content === prefix + "uc") {
                         if(!message.channel.guild) return message.reply('** This command only for servers**');
 
    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**__ليس لديك صلاحيات__**');
@@ -790,18 +790,16 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 ,`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 :closed_lock_with_key: اوامر الادارة :closed_lock_with_key: 
-1  !clear | يحذف الشات
+1  !clear |  يحذف الشات
 2  !bc | ارسال رساله للجميع
 3  !kick | طرد شخص من السيرفر
 4  !ban | حظر شخص من السيرفر
 5  !unban | فك الحظر عن شخص
-6  !mutechannel | قفل الشات
-7  !unmutechannel | فتح الشات
+6  !mc | قفل الشات
+7  !uc | فتح الشات
 8  !mute | عمل ميوت لأحد
 9  !unmute | فك الميوت عن احد
 10 log | لتفعيل اللوق اصنع روم بأسم log
-11 !ct | لأنشاء روم كتابي
-12 !cv | لأنشاء روم صوتي
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ لتذهب الي اوامر الالعاب
    `,`
@@ -1919,38 +1917,3 @@ if(message.content.startsWith(prefix + "bcall")) {
   });
 }
 });
-
-client.on("message", (message) => {
-if (message.content.startsWith("*ct")) {
-            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
-        let args = message.content.split(" ").slice(1);
-    message.guild.createChannel(args.join(' '), 'text');
-message.channel.sendMessage('تـم إنـشاء روم كـتابـي')
-
-}
-});	
-	
-		client.on("message", (message) => {
-if (message.content.startsWith("*cv")) {
-            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
-        let args = message.content.split(" ").slice(1);
-    message.guild.createChannel(args.join(' '), 'voice');
-    message.channel.sendMessage('تـم إنـشاء روم صـوتي')
-
-}
-});
-
-	  client.on('message', message => {
-        let args = message.content.split(" ").slice(1).join(" ")
-        let men = message.mentions.users.first()
-        if(message.content.startsWith(prefix + "roll")){
-            if(!args) return message.channel.send("الرجاء اختيار رقم")
-            message.channel.send(Math.floor(Math.random() * args))
-        }
-    });
-
-client.on('ready', () => {
-        console.log(`back`);
-              client.user.setActivity("!help | !inv", {type: 'WATCHING'});
-      
-      });
