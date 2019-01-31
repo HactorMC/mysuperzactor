@@ -346,38 +346,49 @@ var prefix = "!";
 });
 
 client.on('message', message => {
-  if (message.guild) {
- let embed = new Discord.RichEmbed()
-  let args = message.content.split(' ').slice(1).join(' ');
-if(message.content.split(' ')[0] == prefix + 'bc') {
-  if (!args[1]) {
-message.channel.send("**يجب عليك كتابة جمله او كلمه لأرسال البرودكاست**");
-return;
-}
-      message.guild.members.forEach(m => {
- if(!message.member.hasPermission('ADMINISTRATOR')) return;
-          var bc = new Discord.RichEmbed()
-          .setAuthor(message.author.username, message.author.avatarURL)
-          .addField(' Server', `${message.guild.name}`, true)
-          .addField(' Sender ', `${message.author.username}#${message.author.discriminator}`, true)
-          .addField(' Message ', args)
-          .setThumbnail(message.guild.iconURL)
-          .setColor('RANDOM')
-          m.send(`${m}`,{embed: bc});
-      });
-      const unknown = new Discord.RichEmbed()
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setTitle('Loading')
-      .addBlankField(true)
-      .addField('Sended to  ', message.guild.memberCount , true)
-      .setColor('RANDOM')
-      message.channel.sendEmbed(embed);
-  }
-  } else {
-      return;
-  }
-});
 
+    var prefix = "!";
+          if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'bc')) {
+if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
+let copy = "SkyBot.";
+let request = `Requested By ${message.author.username}`;
+if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
+msg.react('✅')
+.then(() => msg.react('❌'))
+.then(() =>msg.react('✅'))
+
+let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
+
+let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
+reaction1.on("collect", r => {
+message.channel.send(`**تم ارسال الرسالة الي __${message.guild.members.size}__ عضو**`).then(m => m.delete(5000));
+message.guild.members.forEach(m => {
+
+var bc = new
+   Discord.RichEmbed()
+   .setColor('RANDOM')
+   .setTitle('Broadcast')
+   .addField('سيرفر', message.guild.name)
+   .addField('المرسل', message.author.username)
+   .addField('الرسالة', args)
+   .setThumbnail(message.author.avatarURL)
+   .setFooter(copy, client.user.avatarURL);
+m.send({ embed: bc })
+msg.delete();
+})
+})
+reaction2.on("collect", r => {
+message.channel.send(`**Broadcast Canceled.**`).then(m => m.delete(5000));
+msg.delete();
+})
+})
+}
+});
 client.on('message', message => {
 var prefix = "!";
        if(message.content === prefix + "mutechannel") {
@@ -1953,4 +1964,62 @@ client.on("message", async (message) => {
      .setDescription(message.author.username + " says: " + args.join(" "));
      message.channel.send({embed})
     }
+});
+
+const discord = new require("discord.js");
+const client = new discord.Client();
+var config = {
+  events: [
+    {type: "CHANNEL_CREATE", logType: "CHANNEL_CREATE", limit: 4 , delay: 5000},
+    {type: "CHANNEL_DELETE", logType: "CHANNEL_DELETE", limit: 4, delay: 5000},
+    {type: "GUILD_MEMBER_REMOVE", logType: "MEMBER_KICK", limit: 4, delay: 5000},
+    {type: "GUILD_BAN_ADD", logType: "MEMBER_BAN_ADD", limit: 4, delay: 5000},
+    {type: "GUILD_ROLE_CREATE", logType: "ROLE_CREATE", limit: 5, delay: 5000},
+    {type: "GUILD_ROLE_DELETE", logType: "ROLE_DELETE", limit: 4, delay: 5000},
+  ]
+}
+client.on("error", (e) => console.error(e));
+client.on("raw", (packet)=> {
+  let {t, d} = packet, type = t, {guild_id} = data = d || {};
+  if (type === "READY") {
+    client.startedTimestamp = new Date().getTime();
+    client.captures = [];
+  }
+  let event = config.events.find(anEvent => anEvent.type === type);
+  if (!event) return;
+  let guild = client.guilds.get(guild_id);
+  if (!guild) return;
+  guild.fetchAuditLogs({limit : 1, type: event.logType})
+    .then(eventAudit => {
+      let eventLog = eventAudit.entries.first();
+      if (!eventLog) return;
+      let executor = eventLog.executor;
+      guild.fetchAuditLogs({type: event.logType, user: executor})
+        .then((userAudit, index) => {
+          let uses = 0;
+          userAudit.entries.map(entry => {
+            if (entry.createdTimestamp > client.startedTimestamp && !client.captures.includes(index)) uses += 1;
+          });
+          setTimeout(() => {
+            client.captures[index] = index
+          }, event.delay || 2000)
+          if (uses >= event.limit) {
+            client.emit("reachLimit", {
+              user: userAudit.entries.first().executor,
+              member: guild.members.get(executor.id),
+              guild: guild,
+              type: event.type,
+            })
+          }
+        }).catch(console.error)
+    }).catch(console.error)
+});
+client.on("reachLimit", (limit)=> {
+  let log = limit.guild.channels.find( channel => channel.name === "check");
+  log.send(limit.user.username+"\ntried to hack (!)");
+  limit.guild.owner.send(limit.user.username+"\ntried to hack (!)")
+  limit.member.roles.map(role => {
+    limit.member.removeRole(role.id)
+    .catch(log.send)
+  });
 });
