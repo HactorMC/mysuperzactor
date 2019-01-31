@@ -1949,3 +1949,8 @@ if (message.content.startsWith("*cv")) {
         }
     });
 
+client.on('ready', () => {
+        console.log(`back`);
+              client.user.setActivity("codes", {type: 'WATCHING'});
+      
+      });
