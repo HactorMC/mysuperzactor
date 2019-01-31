@@ -389,6 +389,7 @@ msg.delete();
 })
 }
 });
+
 client.on('message', message => {
 var prefix = "!";
        if(message.content === prefix + "mutechannel") {
