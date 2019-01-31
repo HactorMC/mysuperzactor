@@ -34,34 +34,6 @@ client.user.setGame(`!help | !inv  `,"Watching")
  
 client.login(process.env.BOT_TOKEN);
 
-client.on('message', message => {
-    if (message.author.bot) return;
-     if (message.content === prefix + "email") {
-function randomem() {
-let email = '';
-const ReBeL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789._"\'';
-for (let i = 0; i < 5; i++) email += ReBeL.charAt(Math.floor(Math.random() * ReBeL.length));
-return email;
-}
-function randompass() {
-let pass = '';
-const CoDeS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@#$%&()-_"\'';
-for (let i = 0; i < 8; i++) pass += CoDeS.charAt(Math.floor(Math.random() * CoDeS.length));
-return pass;
-}
-const random1 = randomem();
-const random2 = randompass();
-message.author.send(`~~------------------------~~
-Email : **${random1}@gmail.com**
-Password : **${random2}**
-~~------------------------~~`).catch(err => {
-   if(err == "DiscordAPIError: Cannot send messages to this user") {
-      return message.channel.send("**للأسف , لديك اعدادات خصوصية لاتسمح لي بأرسال رسائل خاصة لك **");
-}
-});
-
-message.channel.send("**تم الارسال الحساب في الخاص | ☑ **")
-}});
 
 client.on('message', message => {
    if(message.channel.type === "dm") return;
@@ -776,15 +748,14 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 :notepad_spiral: الاوامر العامة :notepad_spiral: 
 1  !invites  | يقلك عدد الدعوات حقتك
 2  !date | يقلك التاريخ
-3  !email | يعطك ايميل عشوائي
-4  !inv | لتضيف البوت لأي سيرفر
-5  !support | سيرفر السبورت
-6  !new | انشاء تكذرة
-7  !avatar | يظهرلك صورتك او صورة غيرك
-8  !server | يظهر لك معلومات السيرفر
-9  !id | يظهر لك معلوماتك
-10 !members | يظهر لك معلومات اللاعبين
-11 !say | امر يكرر كلامك في امبد
+3  !inv | لتضيف البوت لأي سيرفر
+4  !support | سيرفر السبورت
+5  !new | انشاء تكذرة
+6  !avatar | يظهرلك صورتك او صورة غيرك
+7  !server | يظهر لك معلومات السيرفر
+8  !id | يظهر لك معلوماتك
+9 !members | يظهر لك معلومات اللاعبين
+10 !say | امر يكرر كلامك في امبد
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
