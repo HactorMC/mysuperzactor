@@ -258,52 +258,73 @@ client.on("guildMemberAdd", member => {
         SPEAK: false
       });
       setInterval(function() {
-        c.setName(`👥Members Count : [ ${message.guild.members.size} ]`)
+        c.setName(`👥 Members: ${message.guild.members.size} `)
       },1000);
     });
     }
   });
  
- client.on("message", function(message) {
-      var prefix = "!"
-   if(message.content.startsWith(prefix + "rps")) {
-    let messageArgs = message.content.split(" ").slice(1).join(" ");
-    let messageRPS = message.content.split(" ").slice(2).join(" ");
-    let arrayRPS = ['**# - Rock**','**# - Paper**','**# - Scissors**'];
-    let result = `${arrayRPS[Math.floor(Math.random() * arrayRPS.length)]}`;
-    var RpsEmbed = new Discord.RichEmbed()
-    .setAuthor(message.author.username)
-    .setThumbnail(message.author.avatarURL)
-    .addField("Rock","🇷",true)
-    .addField("Paper","🇵",true)
-    .addField("Scissors","🇸",true)
-    message.channel.send(RpsEmbed).then(msg => {
-        msg.react(' 🇷')
-        msg.react("🇸")
-        msg.react("🇵")
-.then(() => msg.react('🇷'))
-.then(() =>msg.react('🇸'))
-.then(() => msg.react('🇵'))
-let reaction1Filter = (reaction, user) => reaction.emoji.name === '🇷' && user.id === message.author.id;
-let reaction2Filter = (reaction, user) => reaction.emoji.name === '🇸' && user.id === message.author.id;
-let reaction3Filter = (reaction, user) => reaction.emoji.name === '🇵' && user.id === message.author.id;
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-let reaction3 = msg.createReactionCollector(reaction3Filter, { time: 12000 });
-reaction1.on("collect", r => {
-        message.channel.send(result)
-})
-reaction2.on("collect", r => {
-        message.channel.send(result)
-})
-reaction3.on("collect", r => {
-        message.channel.send(result)
-})
-
-    })
+client.on('message' , async (message) => {
+       if(message.content.startsWith(prefix + "rps")) {
+              let args = message.content.split(" ").slice(1);
+  var choice = args[0];
+  if (choice == "ورقة" || choice == "p") {
+    var numb = Math.floor(Math.random() * 100);
+    if (numb <= 50) {
+      var choice2 = "ورقة";
+    } else if (numb > 50) {
+      var choice2 = "حجر";
+    } else {
+      var choice2 = "مقص";
+    }
+    if (choice2 == "مقص") {
+      var response = " لقد اخترت **مقص** و :v: ولقد فزت"
+    } else if (choice2 == "ورقة") {
+      var response = " لقد اخترت **ورقه** :hand_splayed: انه تعادل "
+    } else {
+      var response = " لقد اخترت **حجر** :punch:  انت الفائز"    
+    }
+    message.channel.send(response);
+  } else if (choice == "حجر" || choice == "r") {
+    var numb = Math.floor(Math.random() * 100);
+    if (numb <= 50) {
+      var choice2 = "ورقة";
+    } else if (numb > 50) {
+      var choice2 = "حجر";
+    } else {
+      var choice2 = "مقص";
+    }
+    if (choice2 == "ورقة") {
+      var response = " لقد اخترت **ورقه** :hand_splayed: ولقد فزت"
+    } else if (choice2 == "حجر") {
+      var response = "لقد اخترت **حجر** :punch: انه تعادل "
+    } else {
+      var response = " لقد اخترت **مقص** :v: انت الفائز"
+    }
+    message.channel.send(response);
+  } else if (choice == "مقص" || choice == "s") {
+    var numb = Math.floor(Math.random() * 100);
+    if (numb <= 50) {
+      var choice2 = "ورقة";
+    } else if (numb > 50) {
+      var choice2 = "حجر";
+    } else {
+      var choice2 = "مقص";
+    }
+    if (choice2 == "حجر") {
+      var response = "لقد اخترت **ورقه** :hand_splayed: لقد فزت"
+    } else if (choice2 == "مقص") {
+      var response = "لقد اخترت **مقص** :v: انه تعادل"
+    } else {
+      var response = " لقد اخترت **حجر** :punch: انت الفائز "
+    }
+    message.channel.send(response);
+  } else {
+    message.channel.send(`يجب عليك استعمال \`${prefix}rps\` <حجر|ورقة|مقص>`);
+  }
 }
-});
 
+});
 const HeRo = new Discord.Client();
 client.on('message', message => {
 var prefix = "!";
@@ -330,7 +351,7 @@ client.on('message', message => {
   let args = message.content.split(' ').slice(1).join(' ');
 if(message.content.split(' ')[0] == prefix + 'bc') {
   if (!args[1]) {
-message.channel.send("**Usage: !bc [message]**");
+message.channel.send("**يجب عليك كتابة جمله او كلمه لأرسال البرودكاست**");
 return;
 }
       message.guild.members.forEach(m => {
@@ -348,8 +369,7 @@ return;
       .setAuthor(message.author.username, message.author.avatarURL)
       .setTitle('Loading')
       .addBlankField(true)
-      .addField('♨| i got sended to  ', message.guild.memberCount , true)
-      .addField('📝| the message ', args)
+      .addField('Sended to  ', message.guild.memberCount , true)
       .setColor('RANDOM')
       message.channel.sendEmbed(embed);
   }
@@ -411,17 +431,6 @@ var prefix = "!"
   };
   
   });
-  
-client.on('typingStart', (ch, user) => {
-      if(user.presence.status === 'offline') {
-
-          ch.send(`${user} هدا المستخدم اوفلاين`)
-          .then(msg => {
-              msg.delete(10000)
-          })
-      }
-  })
-  
 
 client.on('message', async message => {
   if(message.content.startsWith(prefix + "sugg")) {
@@ -432,7 +441,7 @@ client.on('message', async message => {
           .then(co => {
             text = co.first().content
 
-              message.channel.send(`**تم حفظ اقتراحك الرجاء انتضار الرد من قبل الاداره**`)
+              message.channel.send(`**تم حفظ اقتراحك الرجاء انتظار الرد من قبل الاداره**`)
                 client.channels.get("515494976218726432").send(`${message.author.username} => ${text}`)
 
               })
