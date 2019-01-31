@@ -226,7 +226,7 @@ const Sra7a = [
         if (message.content.startsWith(prefix + 'sar')) {
             if(!message.channel.guild) return message.reply('** This command only for servers **');
          var client= new Discord.RichEmbed()
-         .setTitle("Zactor")
+         .setTitle("Sarahah")
          .setColor('RANDOM')
          .setDescription(`${Sra7a[Math.floor(Math.random() * Sra7a.length)]}`)
          .setImage("https://www.google.com.eg/imgres?imgurl=https%3A%2F%2Fstatic1.squarespace.com%2Fstatic%2F53a1cb39e4b030ded763dd31%2Ft%2F59baa4eee5dd5ba4b0f06b04%2F1505404178846%2FSarahah.png&imgrefurl=https%3A%2F%2Fwww.affinitytechpartners.com%2F3n1blog%2F2017%2F9%2F14%2Fapp-alert-what-parents-need-to-know-about-anonymous-social-app-sarahah&docid=YpJX1HfyJMZncM&tbnid=wkj9ppiVRWvjEM%3A&vet=10ahUKEwjdiseg4OzfAhXKfFAKHbYXCVcQMwhhKBcwFw..i&w=750&h=352&bih=603&biw=1229&q=sarahah&ved=0ahUKEwjdiseg4OzfAhXKfFAKHbYXCVcQMwhhKBcwFw&iact=mrc&uact=8")
@@ -246,26 +246,23 @@ client.on("guildMemberAdd", member => {
 }).catch(console.error)
 })
 
-client.on('message',async msg => {
-  var p = "!";
-  if(msg.content.startsWith(p + "ocount")) {
-  if(!msg.guild.member(msg.author).hasPermissions('MANAGE_CHANNELS')) return msg.reply('❌ ``No Permissions``');
-  if(!msg.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS'])) return msg.reply('❌ **البوت لا يمتلك صلاحية**');
-  msg.guild.createChannel(`loading :[]` , 'voice').then(time => {
-    time.overwritePermissions(msg.guild.id, {
-      CONNECT: false,
-      SPEAK: false
+  client.on('message',async message => {
+    if(message.content.startsWith(prefix + "ocount")) {
+    if(!message.guild.member(message.author).hasPermissions('MANAGE_CHANNELS')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
+    if(!message.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS','MANAGE_ROLES_OR_PERMISSIONS'])) return message.reply('❌ **ليس معي الصلاحيات الكافية**');
+    message.channel.send('✅| **تم عمل الروم بنجاح**');
+    message.guild.createChannel(`👥Members Count : [ ${message.guild.members.size} ]` , 'voice').then(c => {
+      console.log(`Count Members channel setup for guild: \n ${message.guild.name}`);
+      c.overwritePermissions(message.guild.id, {
+        CONNECT: false,
+        SPEAK: false
+      });
+      setInterval(function() {
+        c.setName(`👥Members Count : [ ${message.guild.members.size} ]`)
+      },1000);
     });
-  setInterval(() => {
-      var currentTime = new Date(),
-Year = currentTime.getFullYear(),
-Month = currentTime.getMonth() + 1,
-Dat = currentTime.getDate()
-      time.setName(`Members : → ${msg.guild.members.size} ←`);
- },1000);
+    }
   });
-  }
-});
  
  client.on("message", function(message) {
       var prefix = "!"
@@ -553,7 +550,7 @@ Members Count: __${guild.memberCount}__
 Servers Counter : __${client.guilds.size}__**`)
          .setColor("#f3ae10")
          .setFooter('Zactor BOT' , client.user.avatarURL)
-           client.channels.get("497345517748224011").send({embed});
+           client.channels.get("518350655056904202").send({embed});
 }
  
 );
@@ -766,7 +763,6 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 8  !server | يظهر لك معلومات السيرفر
 9  !id | يظهر لك معلوماتك
 10 !members | يظهر لك معلومات اللاعبين
-11 !discrim | كود إظهار التاقات المشابهه
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -782,6 +778,8 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 8  !mute | عمل ميوت لأحد
 9  !unmute | فك الميوت عن احد
 10 log | لتفعيل اللوق اصنع روم بأسم log
+11 !ct | لأنشاء روم كتابي
+12 !cv | لأنشاء روم صوتي
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ لتذهب الي اوامر الالعاب
    `,`
@@ -793,6 +791,8 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 5  !mcskin | يظهر سكنك بماينكرافت 
 6  !hack [mention] | لعبة تهكير الاشخاص
 7  !pun | لعبة العقاب
+8  !roll | لعبة القرعه
+9  !emoji | لعبة الايموجي
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
    `]
  let page = 1;
@@ -1109,13 +1109,13 @@ client.on('message', message => {
                                      }
                  message.channel.send({embed: new Discord.RichEmbed().setTitle('Loading ' + virusname + "...").setColor(0xFF0000)}).then(function(m) {
              setTimeout(function() {
-               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Loading Discord Virus [▓ ] 1%').setColor(0xFF0000)})
+               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Loading Discord Hack [▓ ] 1%').setColor(0xFF0000)})
              }, 1000)
             setTimeout(function() {
-               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Loading Discord Virus [▓▓▓▓] 25%').setColor(0xFF0000)})
+               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Loading Discord Hack [▓▓▓▓] 25%').setColor(0xFF0000)})
              }, 2000)
            setTimeout(function() {     
-               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Loading Discord Virus [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%').setColor(0xFF0000)})
+               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Loading Discord Hack [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%').setColor(0xFF0000)})
              }, 3000)
                 setTimeout(function() {
                m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Uploaded! Initiating explosion in 1...').setColor(0xFF0000)})
@@ -1256,24 +1256,25 @@ client.on('message' , message => {
 });
 
 client.on('message', function(msg) {
-         var prefix = "!"
-		if (msg.content === '!server') {
+    if(msg.content.startsWith (prefix  + 'server')) {
       let embed = new Discord.RichEmbed()
       .setColor('RANDOM')
       .setThumbnail(msg.guild.iconURL)
-      .setTitle(`Showing Details Of  **${msg.guild.name}**`)
-      .addField(':globe_with_meridians:** نوع السيرفر**',`[** __${msg.guild.region}__ **]`,true)
-      .addField(':medal:** __الرتب__**',`[** __${msg.guild.roles.size}__ **]`,true)
-      .addField(':red_circle:**__ عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
-      .addField(':large_blue_circle:**__ عدد الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
-      .addField(':pencil:**__ الرومات الكتابية__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
-      .addField(':microphone:**__ رومات الصوت__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
-      .addField(':crown:**__ الأونـر شيب__**',`**${msg.guild.owner}**`,true)
-      .addField(':id:**__ ايدي السيرفر__**',`**${msg.guild.id}**`,true)
-      .addField(':date:**__ تم عمل السيرفر في__**',msg.guild.createdAt.toLocaleString())
+      .setTitle(`__**ServerInfo**__`)
+      .addField('**اسم السيرفر**',`[** __${msg.guild.name}__ **]`,true)
+      .addField('**نوع السيرفر**',`[** __${msg.guild.region}__ **]`,true)
+      .addField('**عدد الاعضاء**',`[** __${msg.guild.memberCount}__ **]`,true)
+      .addField('**عدد البشريين**',`[** __${msg.guild.memberCount - msg.guild.members.filter(m => m.user.bot).size}__ **]`,true)
+      .addField('**عدد البوتات**',`[** __${msg.guild.members.filter(m => m.user.bot).size}__ **]`,true)
+      .addField('**عدد الاعضاء الاونلاين**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
+      .addField('**الرومات**',`[**${msg.guild.channels.filter(m => m.type === 'text').size}** **text | Voice** **${msg.guild.channels.filter(m => m.type === 'voice').size}**]`,true)
+      .addField('**الأونـر**',`**${msg.guild.owner}**`,true)
+      .addField('**ايدي السيرفر**',`[** __${msg.guild.id}__ **]`,true)
+      .addField('**الرتب**',`[** __${msg.guild.roles.size}__ **]`,true)
+      .addField('**تاريخ انشاء السيرفر**',`[** __${msg.guild.createdAt.toLocaleString()}__ **]`, true)
       msg.channel.send({embed:embed});
-	    }
-  });
+    }
+  });    
 
  client.on("message", msg => {
            var prefix = "!";
@@ -1299,7 +1300,7 @@ client.on('message', function(msg) {
     const embed = new Discord.RichEmbed()
     .setDescription(`**Members info🔋
 :green_heart: Online:   ${message.guild.members.filter(m=>m.presence.status == 'online').size}
-:heart:Dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
+:heart: Dnd:       ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}
 :yellow_heart: Idle:      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}
 :black_heart: Offline:   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}
 :blue_heart:   All:  ${message.guild.memberCount}**`)
@@ -1308,17 +1309,40 @@ client.on('message', function(msg) {
     }
   });
 
- client.on('message' , async Dark => {
- 				if (Dark.content === '!emoji') {
-					let args = Dark.content.split(" ").slice(1);
+const codes = {
+    ' ': '   ',
+    '0': '0⃣',
+    '1': '1⃣',
+    '2': '2⃣',
+    '3': '3⃣',
+    '4': '4⃣',
+    '5': '5⃣',
+    '6': '6⃣',
+    '7': '7⃣',
+    '8': '8⃣',
+    '9': '9⃣',
+    '!': '❕',
+    '?': '❔',
+    '#': '#⃣',
+    '*': '*⃣'
+  };
+  
+  'abcdefghijklmnopqrstuvwxyz'.split('').forEach(c => {
+    codes[c] = codes[c.toUpperCase()] = ` :regional_indicator_${c}:`;
+  });
+  
+  
+  client.on('message' , async message => {
+         if(message.content.startsWith(prefix + "emoji")) {
+            let args = message.content.split(" ").slice(1);
     if (args.length < 1) {
-      Dark.channel.send('اكتب الكلام الي تبيه ليتحول لأيموجي');
+      message.channel.send('اكتب الكلام الي تبيه يتحول لأيموجي');
   }
   
-  Dark.channel.send(
+  message.channel.send(
       args.join(' ')
           .split('')
-          .map(c => dark[c] || c)
+          .map(c => codes[c] || c)
           .join('')
   );
   };
@@ -1873,3 +1897,32 @@ if(message.content.startsWith(prefix + "bcall")) {
   });
 }
 });
+
+client.on("message", (message) => {
+if (message.content.startsWith("*ct")) {
+            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+        let args = message.content.split(" ").slice(1);
+    message.guild.createChannel(args.join(' '), 'text');
+message.channel.sendMessage('تـم إنـشاء روم كـتابـي')
+
+}
+});	
+	
+		client.on("message", (message) => {
+if (message.content.startsWith("*cv")) {
+            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+        let args = message.content.split(" ").slice(1);
+    message.guild.createChannel(args.join(' '), 'voice');
+    message.channel.sendMessage('تـم إنـشاء روم صـوتي')
+
+}
+});
+
+	  client.on('message', message => {
+        let args = message.content.split(" ").slice(1).join(" ")
+        let men = message.mentions.users.first()
+        if(message.content.startsWith(prefix + "roll")){
+            if(!args) return message.channel.send("الرجاء اختيار رقم")
+            message.channel.send(Math.floor(Math.random() * args))
+        }
+    });
