@@ -1357,7 +1357,6 @@ client.on('messageDelete', message => {
     .setTimestamp()
     .setFooter(message.guild.name, message.guild.iconURL)
  
-    logChannel.send(messageDelete);
 });
 client.on('messageUpdate', (oldMessage, newMessage) => {
  
