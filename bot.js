@@ -772,6 +772,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 8  !server | يظهر لك معلومات السيرفر
 9  !id | يظهر لك معلوماتك
 10 !members | يظهر لك معلومات اللاعبين
+11 !say | امر يكرر كلامك في امبد
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -1935,3 +1936,21 @@ if (message.content.startsWith("*cv")) {
             message.channel.send(Math.floor(Math.random() * args))
         }
     });
+
+client.on("message", async (message) => {
+ if (message.author.bot) return;
+ if (!message.content.startsWith(prefix)) return;
+    
+ let command = message.content.split(" ")[0];
+ command = command.slice(prefix.length);
+    
+ let args = message.content.split(" ").slice(1);
+    
+ if (command === "say") {
+     message.delete()
+     const embed = new Discord.RichEmbed()
+     .setColor(0x954D23)
+     .setDescription(message.author.username + " says: " + args.join(" "));
+     message.channel.send({embed})
+    }
+});
