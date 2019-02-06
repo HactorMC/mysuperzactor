@@ -318,51 +318,6 @@ var prefix = "!";
 });
 
 client.on('message', message => {
-
-    var prefix = "!";
-          if(!message.channel.guild) return;
-if(message.content.startsWith(prefix + 'bc')) {
-if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف انت لا تمتلك صلاحية** `ADMINISTRATOR`' );
-let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-let copy = "ZactorBOT";
-let request = `Requested By ${message.author.username}`;
-if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
-msg.react('✅')
-.then(() => msg.react('❌'))
-.then(() =>msg.react('✅'))
-
-let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-reaction1.on("collect", r => {
-message.channel.send(`**تم اؤسال البرودكاست الي __${message.guild.members.size}__ عضو**`).then(m => m.delete(5000));
-message.guild.members.forEach(m => {
-
-var bc = new
-   Discord.RichEmbed()
-   .setColor('RANDOM')
-   .setTitle('Broadcast')
-   .addField('سيرفر', message.guild.name)
-   .addField('المرسل', message.author.username)
-   .addField('الرسالة', args)
-   .setThumbnail(message.author.avatarURL)
-   .setFooter(copy, client.user.avatarURL);
-m.send({ embed: bc })
-msg.delete();
-})
-})
-reaction2.on("collect", r => {
-message.channel.send(`**تم الغاء البرودكاست**`).then(m => m.delete(5000));
-msg.delete();
-})
-})
-}
-});
-
-client.on('message', message => {
 var prefix = "!";
        if(message.content === prefix + "mc") {
                            if(!message.channel.guild) return message.reply('** This command only for servers**');
@@ -755,7 +710,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 7  !server | يظهر لك معلومات السيرفر
 8  !id | يظهر لك معلوماتك
 9 !members | يظهر لك معلومات اللاعبين
-10 !say | امر يكرر كلامك في امبد
+10 !Soon | Soon
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -1887,3 +1842,30 @@ if(message.content.startsWith(prefix + "bcall")) {
   });
 }
 });
+
+client.on('message', function(message) {
+    if(!message.channel.guild) return;
+    if(message.content === 'colorscreate') {
+    if(message.member.hasPermission('MANAGE_ROLES')) {
+    setInterval(function(){})
+    message.channel.send('يتم انشاء 200 لون انتضر | ▶️')
+    }else{
+    message.channel.send('ما معاك البرمشن المطلوب |❌🚫')/////////Mal Team
+    }
+    }//////////////////Mal TeAM
+    });///////////Malteam
+    
+    client.on('message', message=>{
+    if (message.content === 'colors create'){
+    if(!message.channel.guild) return;
+    if (message.member.hasPermission('MANAGE_ROLES')){
+    setInterval(function(){})
+    let count = 0;
+    let ecount = 0;
+    for(let x = 1; x < 200; x++){
+    message.guild.createRole({name:x,
+    color: 'RANDOM'})
+    }
+    }///////////////Mal TeAM    
+    }
+    });////////////////////////////////Malteam
