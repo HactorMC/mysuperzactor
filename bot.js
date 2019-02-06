@@ -1856,7 +1856,7 @@ client.on('message', function(message) {
     });///////////Malteam
     
     client.on('message', message=>{
-    if (message.content === 'colors create'){
+    if (message.content === 'colorscreate'){
     if(!message.channel.guild) return;
     if (message.member.hasPermission('MANAGE_ROLES')){
     setInterval(function(){})
