@@ -388,44 +388,9 @@ client.on('message', async message => {
           })
 		  
 		  const coolDown = new Set();
-client.on('message', message => {
-  
-      if (message.content.startsWith("رابط")) {
-        if(coolDown.has(message.author.id)) return message.channel.send(`**:stopwatch: | ${message.author.username}, your invite :yen: link refreshes in \`\`1 Day\`\`.**`);
 
-    message.channel.createInvite({
-  
-          thing: true,
-  
-          maxUses: 5,
-  
-          maxAge: 86400
-  
-      }).then(invite =>
-  
-        message.author.sendMessage(invite.url)
-  
-      )
-  
-    message.channel.send("**تم ارسال الرابط في الخاص**")   .then(() => {     
-      coolDown.add(message.author.id);
-  });
-  
-  
-  message.author.send(`**مدة الرابط : يـوم
-  عدد استخدامات الرابط : 5**`)
-  
-      }
 
-      setTimeout(() => {
-        coolDown.remove(message.author.id);
-     },86400000);
-     
-  });
-  
-  const invites = {};
 
-const wait = require('util').promisify(setTimeout);
 
 client.on('ready', () => {
   wait(1000);
@@ -911,47 +876,6 @@ client.on("message", (message) => {
  
 });
 
-client.on('message',message => {
-         if (!message.content.startsWith(prefix)) return;
-var cont = message.content.slice(prefix.length).split(" ");
-
-  var args = cont.slice(1);
-       if (message.content.startsWith("!nick")) {
-   let nickmention = message.mentions.users.first()
-    if (message.mentions.users.size === 0) {
-        if (message.member.permissions.has("CHANGE_NICKNAME")) {
-            let nickchange = args.slice(0).join(" ");
-            if (args[0] === undefined) {
-                message.channel.send("**ضع الاسم الذي تريده**")
-                return;
-            }
-            message.guild.members.get(message.author.id).setNickname(nickchange).catch(err => {
-                message.channel.send("Error: " + err)
-                return;
-            });
-            message.channel.send("✅ **Changed your nickname to:** `" + nickchange + "`")
-            return;
-        } else {
-            message.channel.send("You don't have permission to change your username. 😕")
-            return;
-        }
-        return; 
-    }
-    if (message.member.permissions.has("MANAGE_NICKNAMES", "ADMINISTRATOR")) {
-        let nickchange = args.slice(1).join(" ");
-        if (args[0] === undefined) {
-            message.channel.send("**ضع اسم**")
-            return;
-        }
-        message.guild.members.get(nickmention.id).setNickname(nickchange).catch(err => {
-            message.channel.send("Error: " + err);
-            return;
-        });
-        message.channel.send("Nick of " + nickmention + " (" + nickmention.username + "#" + nickmention.discriminator + ") changed to: `" + nickchange + "`")
-  
-     }
-    } 
-});
 
 client.on('message', async message =>{
   if (message.author.boss) return;
