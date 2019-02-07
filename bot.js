@@ -638,20 +638,29 @@ if (message.content.startsWith(prefix + 'evasdvaw')) {
 ,`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 :closed_lock_with_key: اوامر الادارة :closed_lock_with_key: 
-1༺༻  !clear | يحذف الشات༺༻
-2༺༻  !bc | ارسال رساله للجميع༺༻
-3༺༻  !kick | طرد شخص من السيرفر༻
-4༺༻  !ban | طرد و منع شخص من الدخول༺༻
-5༺༻ !mutechannel | قفل الشات༺༻
-5༺༻ !unmutechannel | فتح الشات༺༻
+1  !clear |  يحذف الشات
+2  !bc | ارسال رساله للجميع
+3  !kick | طرد شخص من السيرفر
+4  !ban | حظر شخص من السيرفر
+5  !unban | فك الحظر عن شخص
+6  !mc | قفل الشات
+7  !uc | فتح الشات
+8  !mute | عمل ميوت لأحد
+9  !unmute | فك الميوت عن احد
+10 !ccolors [number] | صنع الوان
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ لتذهب الي اوامر الالعاب
    `,`
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
-1༺༻  !marry | لعبة الزواج
-2༺༻  !rps | لعبة حجره,ورقه,مقص༺༻
-3༺༻  لعبة الصراحه | !صراحه༺༻
-4༺༻  !لعبة مريم | !مريم!༺༻
+1  !marry | لعبة الزواج
+2  !rps | لعبة حجره,ورقه,مقص
+3  !sar | لعبة الصراحه
+4  !mr | لعبة مريم
+5  !mcskin | يظهر سكنك بماينكرافت 
+6  !hack [mention] | لعبة تهكير الاشخاص
+7  !pun | لعبة العقاب
+8  !roll | لعبة القرعه
+9  !emoji | لعبة الايموجي
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
    `]
     let page = 1;
@@ -710,7 +719,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 7  !server | يظهر لك معلومات السيرفر
 8  !id | يظهر لك معلوماتك
 9 !members | يظهر لك معلومات اللاعبين
-10 !Soon | Soon
+المزيد قريبا انشاءالله
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -725,7 +734,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 7  !uc | فتح الشات
 8  !mute | عمل ميوت لأحد
 9  !unmute | فك الميوت عن احد
-10 log | لتفعيل اللوق اصنع روم بأسم log
+10 !ccolors [number] | صنع الوان
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ لتذهب الي اوامر الالعاب
    `,`
@@ -1311,3 +1320,37 @@ if(ra3d.content.startsWith(prefix + 'ccolors')) {
               }
             }
        });
+
+    const devs = ['353552161759821824'];
+
+client.on('message', message => {
+    let argresult = message.content.split(` `).slice(1).join(' ');
+    if (message.content.startsWith(prefix + 'setstreaming')) {
+      if (!devs.includes(message.author.id)) return message.channel.send("<@429972030092476437> only this guy can do restart the bot so don't try again :wink:.");
+      message.delete();
+      client.user.setGame(argresult, 'https://twitch.tv/DynastyShop');
+
+    } else if(message.content.startsWith(prefix + 'setwatching')) {
+        client.user.setActivity(argresult,{type: 'WATCHING'});
+
+      } else if(message.content.startsWith(prefix + 'setlistening')) {
+        client.user.setActivity(argresult,{type: 'LISTENING'});
+
+      } else if(message.content.startsWith(prefix + 'setplaying')) {
+        client.user.setActivity(argresult,{type: 'PLAYING'});
+
+      } else if(message.content.startsWith(prefix + 'setname')) {
+        client.user.setUsername(argresult);
+
+      } else if(message.content.startsWith(prefix + 'setavatar')) {
+        client.user.setAvatar(argresult);
+
+
+      } else if(message.content.startsWith(prefix + 'setstatus')) {
+        if(!argresult) return message.channel.send('`online`, `DND(Do not Distrub),` `idle`, `invisible(Offline)` :notes: أختر أحد الحالات');
+        client.user.setStatus(argresult);
+
+
+    }
+
+  });
