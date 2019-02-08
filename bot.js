@@ -1244,36 +1244,3 @@ if(ra3d.content.startsWith(prefix + 'ccolors')) {
             }
        });
 
-    const devs = ['353552161759821824'];
-
-client.on('message', message => {
-    let argresult = message.content.split(` `).slice(1).join(' ');
-    if (message.content.startsWith(prefix + 'setstreaming')) {
-      if (!devs.includes(message.author.id)) return message.channel.send("<@429972030092476437> only this guy can do restart the bot so don't try again :wink:.");
-      message.delete();
-      client.user.setGame(argresult, 'https://twitch.tv/DynastyShop');
-
-    } else if(message.content.startsWith(prefix + 'setwatching')) {
-        client.user.setActivity(argresult,{type: 'WATCHING'});
-
-      } else if(message.content.startsWith(prefix + 'setlistening')) {
-        client.user.setActivity(argresult,{type: 'LISTENING'});
-
-      } else if(message.content.startsWith(prefix + 'setplaying')) {
-        client.user.setActivity(argresult,{type: 'PLAYING'});
-
-      } else if(message.content.startsWith(prefix + 'setname')) {
-        client.user.setUsername(argresult);
-
-      } else if(message.content.startsWith(prefix + 'setavatar')) {
-        client.user.setAvatar(argresult);
-
-
-      } else if(message.content.startsWith(prefix + 'setstatus')) {
-        if(!argresult) return message.channel.send('`online`, `DND(Do not Distrub),` `idle`, `invisible(Offline)` :notes: أختر أحد الحالات');
-        client.user.setStatus(argresult);
-
-
-    }
-
-  });
