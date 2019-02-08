@@ -684,6 +684,7 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 7  !server | يظهر لك معلومات السيرفر
 8  !id | يظهر لك معلوماتك
 9 !members | يظهر لك معلومات اللاعبين
+10 !Soon | Soon
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
