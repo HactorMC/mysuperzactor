@@ -1214,15 +1214,15 @@ if(ra3d.content.startsWith(prefix + 'ccolors')) {
             }
        });
 
-var prefix = "!";///cnhage this
-var adminprefix = '!'/////and this
+var prefix = "!";
+var adminprefix = '!'
 const developers = ["353552161759821824"]
-client.on('message', message => {///MAl codes
+client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!developers.includes(message.author.id)) return;
 
 if (message.content.startsWith(adminprefix + 'setavatar')) {///الامر
-  client.user.setAvatar(argresult);/////mal codes
+  client.user.setAvatar(argresult);
     message.channel.send(`Changing The Avatar To :**${argresult}** `);////الرد
 }
 });
