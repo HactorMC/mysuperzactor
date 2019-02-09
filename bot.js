@@ -371,26 +371,6 @@ var prefix = "!"
   
   });
 
-client.on('message', async message => {
-  if(message.content.startsWith(prefix + "sugg")) {
-  await  message.channel.send(`**اكتب اقتراحك الان**`)
-    let filter = m => m.author.id === message.author.id
-      var text = '';
-        let sugsa = message.channel.awaitMessages(filter, { max: 1, time: 60000})
-          .then(co => {
-            text = co.first().content
-
-              message.channel.send(`**تم حفظ اقتراحك الرجاء انتظار الرد من قبل الاداره**`)
-                client.channels.get("515494976218726432").send(`${message.author.username} => ${text}`)
-
-              })
-            }
-          })
-		  
-		  const coolDown = new Set();
-
-
-
 
 client.on('ready', () => {
   wait(1000);
