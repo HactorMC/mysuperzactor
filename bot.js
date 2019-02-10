@@ -653,7 +653,6 @@ if (message.content.startsWith(prefix + 'help')) { /// And This is The Channel O
 7  !server | يظهر لك معلومات السيرفر
 8  !id | يظهر لك معلوماتك
 9 !members | يظهر لك معلومات اللاعبين
-10 !Soon | Soon
 ༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻༺▇༻
 اضغط ▶ 	لتذهب الي قائمة اوامر الادارة`
 ,`
@@ -1215,4 +1214,3 @@ if(ra3d.content.startsWith(prefix + 'ccolors')) {
        });
 
 
-const Discord = require('discord.js'); const client = new Discord.Client(); const prefix = "!"; //NotMiro //BadGuY client.on('ready', () => { console.log(`Logged in as ${client.user.tag}!`); }); client.on('message', message => { let command = message.content.split(" ")[0].slice(prefix.length); let args = message.content.split(" ").slice(1); if(!message.content.toLowerCase().startsWith(prefix)) return; if(command == "sugg") { if(!args.join(" ")) return message.channel.send(`**يرجي كتابة الاقتراح **`); let channel = message.guild.channels.find(c => c.name == "°suggestions"); let embed = new Discord.RichEmbed() .setAuthor(message.author.username, message.author.displayAvatarURL) .setTitle(``) .setFooter(`Select a reaction below to vote on suggestion`) .setDescription(args.join(" ")); channel.send(embed).then(msg => { msg.react("✅").then(() => msg.react("❌")); message.delete() message.channel.send(`**يرجي كتابة اقتراح لكي يتم ارساله الي روم الاقتراحات ❎ **`); }); } });
